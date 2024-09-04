@@ -19,13 +19,13 @@ Exemple:
 import math
 
 DICO_IMC = {
-    (0, 16.5): "Dénutrition ou famine",
-    (16.5, 18.5): "Maigreur",
-    (18.5, 25): "Corpulence normale",
-    (25, 30): "Surpoids",
-    (30, 35): "Obésité modérée",
-    (35, 40): "Obésité sévère",
-    (40, math.inf): "Obésité morbide"
+    16.5: "Dénutrition ou famine",
+    18.5: "Maigreur",
+    25: "Corpulence normale",
+    30: "Surpoids",
+    35: "Obésité modérée",
+    40: "Obésité sévère",
+    math.inf: "Obésité morbide"
 }
 
 def messageImc(imc: float) -> str:
@@ -43,7 +43,7 @@ def messageImc(imc: float) -> str:
         
     listeIMC = list(DICO_IMC.keys())
     i = 0
-    while not (listeIMC[i][0] <= imc and listeIMC[i][1] >= imc):
+    while not listeIMC[i] >= imc:
         i += 1
     return DICO_IMC[listeIMC[i]]
 

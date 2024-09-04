@@ -105,3 +105,13 @@ def solutionEquation(a: float, b: float, c: float) -> str:
     else:
         res += "Deux racines: " + str(racineDouble(a, b, delta, 1)) + " et " + str(racineDouble(a, b, delta, 2)) + '\n'
     return res
+
+def equation(a:float, b:float, c:float):
+    print(solutionEquation(a, b, c))
+
+def test():
+    equation(1, -3, 0)
+    equation(2, 5, 1)
+    equation(1, 1, 1)
+
+test()
