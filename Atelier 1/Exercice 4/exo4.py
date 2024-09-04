@@ -81,7 +81,7 @@ def saisieDateNaissance()->str:
       if dateEstValide(int(jour), int(mois), int(annee)):
         dateIncorrecte = False
       else:
-        ("La date fournie n'est pas valide. Veuillez recommencer\n")
+        print("La date fournie n'est pas valide. Veuillez recommencer\n")
     else:
       print('Erreur lors de la saisie. Veuillez recommencer\n')
     return dateNaissance
