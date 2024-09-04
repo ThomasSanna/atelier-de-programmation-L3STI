@@ -8,6 +8,9 @@ Fonctions:
     messageImc(imc: float) -> str:
         Retourne la catégorie de l'IMC pour une valeur d'IMC donnée.
 
+    test() -> None:
+        Effectue et imprime plusieurs résultats de la fonction messageImc.
+
 Exemple:
     >>> print(messageImc(22))
     Corpulence normale
@@ -44,14 +47,14 @@ def messageImc(imc: float) -> str:
         i += 1
     return dicoIMC[listeIMC[i]]
 
-def test():
-  """
-  Effectue et Imprime plusieurs résultats de la fonction messageImc
-  """
-  print(messageImc(-19.0)) # L'IMC ne peut pas être négatif
-  print(messageImc(10.0)) # Dénutrition ou famine
-  print(messageImc(20.0)) # Corpulence normale
-  print(messageImc(32.0)) # Obésité modérée
-  print(messageImc(50.0)) # Obésité morbide
+def test() -> None:
+    """
+    Effectue et imprime plusieurs résultats de la fonction messageImc.
+    """
+    print(messageImc(-19.0))  # L'IMC ne peut pas être négatif
+    print(messageImc(10.0))   # Dénutrition ou famine
+    print(messageImc(20.0))   # Corpulence normale
+    print(messageImc(32.0))   # Obésité modérée
+    print(messageImc(50.0))   # Obésité morbide
 
 test()
