@@ -4,16 +4,22 @@ Ce module fournit des fonctions pour résoudre des équations quadratiques de la
 Fonctions:
 - discriminant(a: float, b: float, c: float) -> float: 
     Calcule le discriminant de l'équation quadratique.
+    
 - racineUnique(a: float, b: float) -> float: 
     Calcule la racine unique de l'équation quadratique lorsque le discriminant est nul.
+    
 - racineDouble(a: float, b: float, delta: float, num: int) -> float: 
     Calcule les deux racines de l'équation quadratique lorsque le discriminant est positif.
+    
 - strEquation(a: float, b: float, c: float) -> str: 
     Retourne une représentation sous forme de chaîne de l'équation quadratique.
+    
 - solutionEquation(a: float, b: float, c: float) -> str: 
     Retourne les solutions de l'équation quadratique sous forme de chaîne.
+    
 - equation(a: float, b: float, c: float): 
     Affiche les solutions de l'équation quadratique.
+    
 - test(): 
     Teste les fonctions du module.
 """
