@@ -51,14 +51,10 @@ while jeuEnMarche:
     if choixJoueur1 == choixJoueur2 :
         resultatGagnant = "aucun de vous, vous êtes ex æquo"
         
-    elif (choixJoueur1 == 'papier' and choixJoueur2 == 'pierre') or (choixJoueur1 == 'ciseaux' and choixJoueur2 == 'papier') or (choixJoueur1 == 'pierre' and choixJoueur2 == 'ciseaux'):
+    elif ((choixJoueur1 == 'puit' and choixJoueur2 in ('pierre', 'ciseaux')) or (choixJoueur1 == 'feuille' and choixJoueur2 == 'puit')) or (choixJoueur1 == 'papier' and choixJoueur2 == 'pierre') or (choixJoueur1 == 'ciseaux' and choixJoueur2 == 'papier') or (choixJoueur1 == 'pierre' and choixJoueur2 == 'ciseaux'):
         resultatGagnant = nomJoueur1
         scoreJoueur1 += 1
         
-    elif ((choixJoueur1 == 'puit' and choixJoueur2 in ('pierre', 'ciseaux')) or (choixJoueur1 == 'feuille' and choixJoueur2 == 'puit')):
-        resultatGagnant = nomJoueur1
-        scoreJoueur1 += 1
-
     else:
         resultatGagnant = nomJoueur2
         scoreJoueur2 += 1
