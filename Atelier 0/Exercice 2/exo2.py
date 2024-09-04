@@ -65,7 +65,7 @@ while not choixLetFait:
     choixLettre = input('Votre lettre est une ' + elt['nom'] + ' ? O/N/Stop -> ')
     if choixLettre == 'O':
       choixLetFait = True
-      lettreChoisie = elt
+      lettreChoisie = elt 
       break
     elif choixLettre != 'N':
       choixLetFait = True
@@ -86,4 +86,4 @@ if choixLettre == 'O':
   
 # si aucun type de lettre n'a été choisi
 else:
-  print('erreur ^^')
+  print('Holla Problème sur le type de lettre')
