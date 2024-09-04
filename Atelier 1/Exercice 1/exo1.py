@@ -18,7 +18,7 @@ Exemple:
 
 import math
 
-dicoIMC = {
+DICO_IMC = {
     (0, 16.5): "Dénutrition ou famine",
     (16.5, 18.5): "Maigreur",
     (18.5, 25): "Corpulence normale",
@@ -41,11 +41,11 @@ def messageImc(imc: float) -> str:
     if imc < 0:
         return "L'IMC ne peut pas être négatif"
         
-    listeIMC = list(dicoIMC.keys())
+    listeIMC = list(DICO_IMC.keys())
     i = 0
     while not (listeIMC[i][0] <= imc and listeIMC[i][1] >= imc):
         i += 1
-    return dicoIMC[listeIMC[i]]
+    return DICO_IMC[listeIMC[i]]
 
 def test() -> None:
     """
