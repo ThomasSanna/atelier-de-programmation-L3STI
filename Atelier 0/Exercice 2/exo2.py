@@ -80,10 +80,12 @@ if choixLettre == 'O':
     poidAutorise = True
 
   # calcul du prix final
-  prixFinal = getPrixTarification(lettreChoisie, PoidChoisi)
-  print('Le prix final est de ', prixFinal, ' euros.')
-  
-  
+  if poidAutorise:
+    prixFinal = getPrixTarification(lettreChoisie, PoidChoisi)
+    print('Le prix final est de ', prixFinal, ' euros.')
+  else:
+    print('Le poid dépasse celui autorisé')
+    
 # si aucun type de lettre n'a été choisi
 else:
   print('Holla Problème sur le type de lettre')
