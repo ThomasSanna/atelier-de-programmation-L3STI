@@ -1,7 +1,7 @@
 import math
 
 # retourne le prix(float) selon le poid et la lettre choisis par l'utilisateur
-def getPrixTarification(lettre, poid:int):
+def getPrixTarification(lettre:dict, poid:int):
   prix = 0
   listeTarif = list(lettre['tarificationPoidPrix'].keys()) # liste des poids disponibles pour la tarification
   indexTarif = 0
