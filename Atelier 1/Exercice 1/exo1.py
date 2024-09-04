@@ -43,7 +43,7 @@ def messageImc(imc: float) -> str:
         
     listeIMC = list(DICO_IMC.keys())
     i = 0
-    while not listeIMC[i] >= imc:
+    while listeIMC[i] < imc:
         i += 1
     return DICO_IMC[listeIMC[i]]
 
