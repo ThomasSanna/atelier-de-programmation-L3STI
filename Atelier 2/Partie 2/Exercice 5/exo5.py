@@ -1,3 +1,21 @@
+# Fonction count() du terroire
+def nbOccurrences(lst: list, e: int) -> int:
+    """
+    Retourne le nombre d'occurrences de L'élément `e` dans la liste `lst`.
+
+    Paramètres:
+    lst (list): La liste dans laquelle chercher.
+    e (int): L'élément à compter.
+
+    Retourne:
+    int: Le nombre d'occurrences de `e` dans `lst`.
+    """
+    occ = 0
+    for elt in lst:
+        occ += 1 if e == elt else 0
+    return occ
+
+
 nbEmplacement = 4
 lObjets = [1, 2, 2, 3, 4, 5, 5]
 
@@ -14,8 +32,8 @@ def maxOccurence(lst:list)->int:
   maxi = 0
   for i in range(len(lst)):
     # vérifie si L'élément courant a plus d'occurrences que le maximum actuel
-    if maxi < lst.count(lst[i]):
-      maxi = lst.count(lst[i])
+    if maxi < nbOccurrences(lst, lst[i]):
+      maxi = nbOccurrences(lst, lst[i])
   return maxi
 
 def rangerParNombreOccurence(lst:list)->list:
@@ -34,7 +52,7 @@ def rangerParNombreOccurence(lst:list)->list:
   lTemp = [[] for i in range(maxOcc)]
   for elt in lst:
     # ajoute L'élément dans la liste temporaire correspondante
-    lTemp[lst.count(elt)-1].append(elt)
+    lTemp[nbOccurrences(lst, elt)-1].append(elt)
   lRes = []
   for i in range(len(lTemp)):
     # ajoute les éléments des listes temporaires à la liste de résultat

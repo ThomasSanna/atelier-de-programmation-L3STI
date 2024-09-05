@@ -1,3 +1,20 @@
+# Fonction count() du terroire
+def nbOccurrences(lst: list, e: int) -> int:
+    """
+    Retourne le nombre d'occurrences de L'élément `e` dans la liste `lst`.
+
+    Paramètres:
+    lst (list): La liste dans laquelle chercher.
+    e (int): L'élément à compter.
+
+    Retourne:
+    int: Le nombre d'occurrences de `e` dans `lst`.
+    """
+    occ = 0
+    for elt in lst:
+        occ += 1 if e == elt else 0
+    return occ
+
 # Question 1
 
 def present(lst: list, e: int) -> bool:
@@ -239,7 +256,7 @@ print('\n')
  
 # VERSION 3 
 def pos3(lst, e) : 
-  nb= lst.count(e) 
+  nb = nbOccurrences(lst, e)
   Lres = [0]*nb 
   for i in range (0, len(lst), 1) : 
     if (lst[i] == e) : 
@@ -252,7 +269,7 @@ print('\n')
  
 # VERSION 4 
 def pos4(lst, e) : 
-  nb= lst.count(e) 
+  nb = nbOccurrences(lst, e)
   Lres = [0]*nb 
   j=0 
   for i in range (0, len(lst), 1) : 
@@ -292,7 +309,7 @@ print('\n')
  
 # VERSION 3 
 def pos3(lst, e) : 
-  nb = lst.count(e)
+  nb = nbOccurrences(lst, e)
   j = 0
   Lres = [0]*nb 
   for i in range (0, len(lst)) : 
@@ -307,7 +324,7 @@ print('\n')
  
 # VERSION 4 
 def pos4(lst, e) : 
-  nb = lst.count(e) 
+  nb = nbOccurrences(lst, e)
   Lres = [0]*nb 
   j = 0 
   for i in range (0, len(lst)) : 
