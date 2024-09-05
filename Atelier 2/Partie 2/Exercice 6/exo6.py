@@ -15,7 +15,7 @@ def present(L: list, e: int) -> bool:
         if elt == e:
             return True
     return False
-
+ 
 def test_present(present: callable):
     """
     Teste la fonction `present` avec différents cas de test.
