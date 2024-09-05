@@ -1,3 +1,5 @@
+import matplotlib.pyplot as plt
+
 F=[6,5,6,8,4,2,1,5]
 
 # Question 1
@@ -37,3 +39,29 @@ print(estSurjective(F))
 def estBijective(F:list)->bool:
   return estInjective(F) and estSurjective(F)
 
+# Question 2
+
+def afficheHisto(F:list):
+  H = histo(F)
+  res = "HISTOGRAMME \n"
+  maxOcc = max(H)
+  for i in range(maxOcc):
+    for elt in H:
+      res += " # " if elt >= maxOcc - i else "   "
+    res += '\n'
+  for i in range(len(H)):
+    res += ' ' + str(i) + ' '
+  print(res)
+  
+F = [0, 2, 3, 1, 8, 9, 4, 2, 3, 2]
+afficheHisto(F)
+
+def afficheHistoMatPlot(F:list):
+  H = histo(F)
+  plt.bar(range(len(H)), H)
+  plt.xlabel('Valeurs')
+  plt.ylabel('Occurrences')
+  plt.title('Histogramme')
+  plt.show()
+  
+afficheHistoMatPlot(F)
