@@ -14,30 +14,12 @@ def somme1(L: list) -> int:
     return res
 
 def somme2(L: list) -> int:
-    """
-    Calcule la somme des éléments d'une liste en utilisant une boucle for directement sur les éléments.
-    
-    Paramètres:
-        L (list): Une liste d'entiers.
-    
-    Retourne:
-        int: La somme des éléments de la liste.
-    """
     res = 0
     for elt in L:
         res += elt
     return res
 
 def somme3(L: list) -> int:
-    """
-    Calcule la somme des éléments d'une liste en utilisant une boucle while.
-    
-    Paramètres:
-        L (list): Une liste d'entiers.
-    
-    Retourne:
-        int: La somme des éléments de la liste.
-    """
     res = 0
     i = 0
     while i < len(L):
