@@ -40,4 +40,111 @@ def test_present(present: callable):
   else:
     print("ECHEC : test absence")
 
+print("Test present()")
 test_present(present)
+print('\n')
+
+# Question 2
+
+# ----------- Versions non-corrigées --------------
+#VERSION 1 
+def present1 (L, e) : 
+  for i in range (0, len(L), 1) :  
+    if (L[i] == e) :  
+      return(True) 
+    else :  
+      return (False)  
+  return (False)
+
+print("Test present1()")
+test_present(present1) 
+print('\n')
+ 
+#VERSION 2 
+def present2 (L, e) : 
+  b=True 
+  for i in range (0, len(L), 1) :  
+    if (L[i] == e) :  
+      b=True 
+    else :  
+      b=False 
+  return (b) 
+
+print("Test present2()")
+test_present(present2) 
+print('\n')
+ 
+#VERSION 3 
+def present3 (L, e) : 
+  b=True 
+  for i in range (0, len(L), 1) : 
+    return (L[i] == e)
+  
+print("Test present3()")
+test_present(present3) 
+print('\n')
+ 
+#VERSION 4 
+def present4 (L, e) : 
+  b=False 
+  i=0 
+  while (i<len(L) and b) :  
+    if (L[i] == e) :  
+      b=True 
+  return (b)
+
+print("Test present4()")
+test_present(present4) 
+print('\n')
+
+# Question 3
+
+# ----------- Versions corrigées --------------
+#VERSION 1 
+def present1 (L, e) : 
+  for i in range (0, len(L)) :  
+    if (L[i] == e) :  
+      return(True)
+  return (False)
+
+print("Test present1()")
+test_present(present1) 
+print('\n')
+ 
+#VERSION 2 
+def present2 (L, e) : 
+  b=False 
+  for i in range (0, len(L)) :  
+    if (L[i] == e) :  
+      b=True 
+  return (b) 
+
+print("Test present2()")
+test_present(present2) 
+print('\n')
+ 
+#VERSION 3 
+def present3 (L, e) : 
+  b=False 
+  for i in range (0, len(L)) :  
+    if (L[i] == e) :  
+      b = True 
+  return (b) 
+  
+print("Test present3()")
+test_present(present3) 
+print('\n')
+ 
+#VERSION 4 
+def present4 (L, e) : 
+  b=False 
+  i = 0 
+  while (i<len(L) and not b) :  
+    if (L[i] == e) :  
+      b=True 
+    i += 1
+  return (b)
+
+print("Test present4()")
+test_present(present4) 
+print('\n')
