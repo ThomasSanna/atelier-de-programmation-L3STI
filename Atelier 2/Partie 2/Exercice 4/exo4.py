@@ -47,13 +47,17 @@ def afficheHisto(F:list):
   maxOcc = max(H)
   for i in range(maxOcc):
     for elt in H:
-      res += " # " if elt >= maxOcc - i else "   "
+      if elt >= maxOcc - i:
+        res += " # "  
+      else:
+        res += "   "
     res += '\n'
   for i in range(len(H)):
     res += ' ' + str(i) + ' '
   print(res)
   
 F = [0, 2, 3, 1, 8, 9, 4, 2, 3, 2]
+print(histo(F))
 afficheHisto(F)
 
 def afficheHistoMatPlot(F:list):
