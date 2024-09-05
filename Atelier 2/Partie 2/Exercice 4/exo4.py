@@ -56,7 +56,7 @@ def afficheHisto(F:list):
     res += ' ' + str(i) + ' '
   print(res)
   
-F = [0, 2, 3, 1, 8, 9, 4, 2, 3, 2]
+F = [2, 3, 1, 8, 9, 4, 2, 3, 2, 8, 9, 7, 4, 2, 1, 5, 6, 8, 9, 0, 8, 7, 6, 6, 3, 4, 4, 4, 2, 5]
 print(histo(F))
 afficheHisto(F)
 
