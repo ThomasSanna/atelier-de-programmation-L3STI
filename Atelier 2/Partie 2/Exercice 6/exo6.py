@@ -148,3 +148,142 @@ def present4 (L, e) :
 print("Test present4()")
 test_present(present4) 
 print('\n')
+
+# Question 4
+
+def pos(L:list, e:int)->list:
+  lInd = []
+  for i in range(len(L)):
+    if e == L[i]:
+      lInd.append(i)
+  return lInd
+
+def test_pos(fonctionPos):
+    casTest = [
+        ([1, 2, 3, 4, 2, 5], 2, [1, 4]),
+        ([1, 2, 3, 4, 5], 6, []),
+        ([1, 1, 1, 1, 1], 1, [0, 1, 2, 3, 4]),
+        ([], 1, []),
+        ([1, 2, 3, 4, 5], 3, [2])
+    ]
+    
+    for (L, e, res) in (casTest):
+        result = fonctionPos(L, e)
+        if result == res:
+            print(f"REUSSITE.")
+        else:
+            print(f"ECHEC: Résultat trouvé: {result}, Résultat attendu: {res}")
+
+# Example usage
+print("Test pos()")
+test_pos(pos)
+print('\n')
+
+# ------ Fonctions non corrigées -------
+
+# VERSION 1 
+def pos1(L, e) : 
+  Lres = list(L) 
+  for i in range (0, len(L), 1) : 
+    if (L[i] == e) : 
+      Lres += [i]   
+  return Lres 
+
+print("Test pos1()")
+test_pos(pos1)
+print('\n')
+ 
+# VERSION 2 
+def pos2(L, e) : 
+  Lres = list(L) 
+  for i in range (0, len(L), 1) : 
+    if (L[i] == e) : 
+      Lres[i] = i   
+  return Lres 
+ 
+print("Test pos2()")
+test_pos(pos2)
+print('\n')
+ 
+# VERSION 3 
+def pos3(L, e) : 
+  nb= L.count(e) 
+  Lres = [0]*nb 
+  for i in range (0, len(L), 1) : 
+    if (L[i] == e) : 
+      Lres.append(i)   
+  return Lres 
+
+print("Test pos3()")
+test_pos(pos3)
+print('\n')
+ 
+# VERSION 4 
+def pos4(L, e) : 
+  nb= L.count(e) 
+  Lres = [0]*nb 
+  j=0 
+  for i in range (0, len(L), 1) : 
+    if (L[i] == e) : 
+      Lres[j]= i  
+  return Lres
+
+print("Test pos4()")
+test_pos(pos4)
+print('\n')
+
+# ------ Fonctions corrigées -------
+
+# VERSION 1 
+def pos1(L, e) : 
+  Lres = [] # Lres = list(L) 
+  for i in range (0, len(L)) : 
+    if (L[i] == e) : 
+      Lres += [i]   
+  return Lres 
+
+print("Test pos1()")
+test_pos(pos1)
+print('\n')
+ 
+# VERSION 2 
+def pos2(L, e) : 
+  Lres = [] # Lres = list(L) 
+  for i in range (0, len(L), 1) : 
+    if (L[i] == e) : 
+      Lres.append(i) # Lres[i] = i
+  return Lres 
+ 
+print("Test pos2()")
+test_pos(pos2)
+print('\n')
+ 
+# VERSION 3 
+def pos3(L, e) : 
+  nb = L.count(e)
+  j = 0
+  Lres = [0]*nb 
+  for i in range (0, len(L)) : 
+    if (L[i] == e) : 
+      Lres[j] = i # Lres.append(i)
+      j += 1 # Incrémentation de J
+  return Lres
+
+print("Test pos3()")
+test_pos(pos3)
+print('\n')
+ 
+# VERSION 4 
+def pos4(L, e) : 
+  nb = L.count(e) 
+  Lres = [0]*nb 
+  j = 0 
+  for i in range (0, len(L)) : 
+    if (L[i] == e) : 
+      Lres[j] = i  
+      j += 1 # Incrémentation de J !!
+  return Lres
+
+print("Test pos4()")
+test_pos(pos4)
+print('\n')
