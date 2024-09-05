@@ -1,9 +1,7 @@
-# nombre d'emplacements disponibles par vitrine
 nbEmplacement = 4
-# liste des objets
 lObjets = [1, 2, 2, 3, 4, 5, 5]
 
-def maxOccurence(L):
+def maxOccurence(L:list)->int:
   """
   Retourne le nombre maximum d'occurrences d'un élément dans la liste L.
 
@@ -20,7 +18,7 @@ def maxOccurence(L):
       maxi = L.count(L[i])
   return maxi
 
-def rangerParNombreOccurence(L):
+def rangerParNombreOccurence(L:list)->list:
   """
   Trie la liste L par nombre d'occurrences décroissantes des éléments.
      
@@ -43,7 +41,7 @@ def rangerParNombreOccurence(L):
     lRes += lTemp[len(lTemp)-(i+1)]
   return lRes
 
-def agenceObjetVitrines(nbEmplacement, lObjets):
+def agenceObjetVitrines(nbEmplacement:int, lObjets:list)->list:
   """
   Organise les objets dans les vitrines en fonction du nombre d'emplacements disponibles.
          
@@ -72,5 +70,4 @@ def agenceObjetVitrines(nbEmplacement, lObjets):
   # Renvoie les deux vitrines et renvoie si les objets ont bien tous été pris ou non.
   return (list(vitrines), len(lParOccurence) == 0) 
 
-# affiche le résultat de l'organisation des objets dans les vitrines
 print(agenceObjetVitrines(nbEmplacement, lObjets))
