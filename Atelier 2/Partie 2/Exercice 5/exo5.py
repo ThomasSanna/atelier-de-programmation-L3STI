@@ -1,40 +1,40 @@
 nbEmplacement = 4
 lObjets = [1, 2, 2, 3, 4, 5, 5]
 
-def maxOccurence(L:list)->int:
+def maxOccurence(lst:list)->int:
   """
-  Retourne le nombre maximum d'occurrences d'un élément dans la liste L.
+  Retourne le nombre maximum d'occurrences d'un élément dans la liste lst.
 
   Args:
-      L (list): La liste des éléments.
+      lst (list): La liste des éléments.
 
   Returns:
     int: Le nombre maximum d'occurrences d'un élément dans la liste.
   """
   maxi = 0
-  for i in range(len(L)):
-    # vérifie si l'élément courant a plus d'occurrences que le maximum actuel
-    if maxi < L.count(L[i]):
-      maxi = L.count(L[i])
+  for i in range(len(lst)):
+    # vérifie si L'élément courant a plus d'occurrences que le maximum actuel
+    if maxi < lst.count(lst[i]):
+      maxi = lst.count(lst[i])
   return maxi
 
-def rangerParNombreOccurence(L:list)->list:
+def rangerParNombreOccurence(lst:list)->list:
   """
-  Trie la liste L par nombre d'occurrences décroissantes des éléments.
+  Trie la liste lst par nombre d'occurrences décroissantes des éléments.
      
   Args:
-      L (list): La liste des éléments.
+      lst (list): La liste des éléments.
      
   Returns:
       list: La liste triée par nombre d'occurrences décroissantes.
   """
-  L.sort()
-  maxOcc = maxOccurence(L)
+  lst.sort()
+  maxOcc = maxOccurence(lst)
   # crée une liste de listes temporaires pour stocker les éléments par occurrences
   lTemp = [[] for i in range(maxOcc)]
-  for elt in L:
-    # ajoute l'élément dans la liste temporaire correspondante
-    lTemp[L.count(elt)-1].append(elt)
+  for elt in lst:
+    # ajoute L'élément dans la liste temporaire correspondante
+    lTemp[lst.count(elt)-1].append(elt)
   lRes = []
   for i in range(len(lTemp)):
     # ajoute les éléments des listes temporaires à la liste de résultat
@@ -58,7 +58,7 @@ def agenceObjetVitrines(nbEmplacement:int, lObjets:list)->list:
     nbEmpPris = 0
     j = 0
     while j < len(lParOccurence) and nbEmpPris < nbEmplacement:
-      # vérifie si l'objet n'est pas déjà dans la vitrine courante
+      # vérifie si L'objet n'est pas déjà dans la vitrine courante
       if lParOccurence[j] not in vitrines[i]:
         vitrines[i].append(lParOccurence[j])
         lParOccurence.pop(j)

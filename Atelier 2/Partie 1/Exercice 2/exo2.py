@@ -4,8 +4,8 @@ listeTriee = [0, 3, 4, 7, 8, 10, 13, 14, 17, 19, 20, 22, 25, 27, 30, 32, 33, 34,
 
 def position(lst: list, e: int) -> int:
     """
-    Retourne l'index de la première occurrence de l'élément `e` dans la liste `lst`.
-    Si l'élément n'est pas trouvé, retourne -1.
+    Retourne L'index de la première occurrence de L'élément `e` dans la liste `lst`.
+    Si L'élément n'est pas trouvé, retourne -1.
 
     Paramètres:
     lst (list): La liste dans laquelle chercher.
@@ -21,8 +21,8 @@ def position(lst: list, e: int) -> int:
 
 def position2(lst: list, e: int) -> int:
     """
-    Retourne l'index de la première occurrence de l'élément `e` dans la liste `lst` en utilisant une boucle while.
-    Si l'élément n'est pas trouvé, retourne -1.
+    Retourne L'index de la première occurrence de L'élément `e` dans la liste `lst` en utilisant une boucle while.
+    Si L'élément n'est pas trouvé, retourne -1.
 
     Paramètres:
     lst (list): La liste dans laquelle chercher.
@@ -40,7 +40,7 @@ def position2(lst: list, e: int) -> int:
 
 def nbOccurrences(lst: list, e: int) -> int:
     """
-    Retourne le nombre d'occurrences de l'élément `e` dans la liste `lst`.
+    Retourne le nombre d'occurrences de L'élément `e` dans la liste `lst`.
 
     Paramètres:
     lst (list): La liste dans laquelle chercher.
@@ -90,8 +90,8 @@ def estTriee2(lst: list) -> bool:
 
 def positionTri(lst: list, e: int) -> int:
     """
-    Retourne l'index de l'élément `e` dans la version triée de la liste `lst` en utilisant la recherche binaire.
-    Si l'élément n'est pas trouvé, retourne -1.
+    Retourne L'index de L'élément `e` dans la version triée de la liste `lst` en utilisant la recherche binaire.
+    Si L'élément n'est pas trouvé, retourne -1.
 
     Paramètres:
     lst (list): La liste dans laquelle chercher.
