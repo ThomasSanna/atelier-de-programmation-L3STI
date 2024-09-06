@@ -113,7 +113,7 @@ def selectWord(sortedWords: dict, wordLen: int) -> str:
         str: Un mot aléatoire de la longueur spécifiée.
     """
     lenMotsDictN = len(sortedWords[wordLen])
-    return sortedWords[wordLen][random.randint(0, lenMotsDictN)]
+    return sortedWords[wordLen][random.randint(0, lenMotsDictN-1)]
 
 def demandeDifficulteGetWordLen() -> int:
     """
@@ -170,8 +170,8 @@ def runGame():
             lstIndTrouve += lstIndRes
 
     if nbErreur == 5:
-        print("\n Perdu !")
+        print("\nPerdu !")
     else:
-        print("Bravo ! Le mot était bien ", motATrouver, "!")
+        print("\nBravo ! Le mot était bien ", motATrouver, "!")
 
 runGame()
