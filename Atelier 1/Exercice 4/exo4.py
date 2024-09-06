@@ -46,8 +46,10 @@ def estBissextile(annee: int) -> bool:
     divPar400 = annee % 400 == 0
     return (divPar4 and not divPar100) or divPar400
   
-# NB : Le jour de Février va être modifié dans la fonction dateEstValide.
-joursFinDeMois = [31, -1, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31] 
+# Le jour de Février va être modifié dans la fonction dateEstValide:
+# joursFinDeMois[1] est temporairement égal à -1: 29 si bisextile, sinon 28
+# voir ligne 69
+joursFinDeMois = [31, -1, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]  #joursFinDeMois n'est donc pas une constante
 
 def dateEstValide(jour:int, mois:int, annee:int)->bool:
   """ Détermine si une date est Valide selon plusieurs critères.
@@ -99,7 +101,7 @@ def age(dateNaissance:str)->int:
   Returns:
       int: Age de la personne
   """
-  jour, mois, annee = map(int, dateNaissance.split('-')) # map permet de convertir chaque str en int (si possible).
+  jour, mois, annee = map(int, dateNaissance.split('-')) # map convertis en int chaque element de dateNaissance.split()
   if dateEstValide(jour, mois, annee):
     anneeNow, moisNow, _ = map(int, str(date.today()).split('-'))
     diffAnnee = anneeNow - annee
