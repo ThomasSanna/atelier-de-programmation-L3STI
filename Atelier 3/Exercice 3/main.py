@@ -22,7 +22,7 @@ def placesLettre(ch: str, mot: str) -> list:
             indRes.append(i)
     return indRes
 
-assert placesLettre("m", 'maman') == [0, 2]
+assert placesLettre("m", "maman") == [0, 2]
 
 def outputStr(mot: str, lPos: list) -> str:
     """
@@ -35,14 +35,16 @@ def outputStr(mot: str, lPos: list) -> str:
     Returns:
         str: Une chaîne de caractères avec les lettres trouvées et des tirets pour les lettres non trouvées.
     """
-    res = ''
+    res = ""
     for i in range(len(mot)):
         if i in lPos:
             res += mot[i]
         else:
-            res += '-'
+            res += "-"
     return res
-  
+
+assert outputStr("bonjour", [0, 1, 4]) == "bo--o--"
+
 def dictionnaire(fichier: str) -> list:
     """
     Lit un fichier et retourne une liste de mots.
@@ -54,22 +56,85 @@ def dictionnaire(fichier: str) -> list:
         list: Une liste de mots contenus dans le fichier.
     """
     lstRes = []
-    with open(fichier, 'r', encoding='utf-8') as f:
+    with open(fichier, "r", encoding="utf-8") as f:
         for line in f:
             line = line.lower()
-            line = line.strip() # Utilisation de strip() pour enlever les espaces et les sauts de ligne
-            if '-' not in line and ' ' not in line and "'" not in line:
-              lstRes.append(line.strip()) 
+            line = (
+                line.strip()
+            )  # Utilisation de strip() pour enlever les espaces et les sauts de ligne
+            if "-" not in line and " " not in line and "'" not in line:
+                lstRes.append(line.strip())
     return lstRes
-  
 
-assert outputStr('bonjour', [0, 1, 4]) == 'bo--o--'
+lstMot = dictionnaire("Atelier 3/Exercice 3/noms-capitales.txt")
+lstPendu = ["|---] ", "| O ", "| T ", "|/ \ ", "|______"]
 
-lstPendu = ["|---] ", 
-            "| O ", 
-            "| T ", 
-            "|/ \ ", 
-            "|______"]
+def getMaxStrLen(lst: list) -> int:
+    """
+    Retourne la longueur maximale des chaînes de caractères dans une liste.
+
+    Args:
+        lst (list): Une liste de chaînes de caractères.
+
+    Returns:
+        int: La longueur maximale des chaînes de caractères dans la liste.
+    """
+    maxLen = 0
+    for e in lst:
+        if len(e) > maxLen:
+            maxLen = len(e)
+    return maxLen
+
+def buildDict(lst: list) -> dict:
+    """
+    Construit un dictionnaire où les clés sont les longueurs des mots et les valeurs sont des listes de mots de cette longueur.
+
+    Args:
+        lst (list): Une liste de mots.
+
+    Returns:
+        dict: Un dictionnaire avec les longueurs des mots comme clés et les listes de mots comme valeurs.
+    """
+    maxLen = getMaxStrLen(lstMot)
+    dictBuilded = {i: [] for i in range(4, maxLen+1)}
+    for mot in lstMot:
+        dictBuilded[len(mot)].append(mot)
+    return dictBuilded
+
+def selectWord(sortedWords: dict, wordLen: int) -> str:
+    """
+    Sélectionne un mot aléatoire d'une longueur donnée dans un dictionnaire de mots triés par longueur.
+
+    Args:
+        sortedWords (dict): Un dictionnaire avec les longueurs des mots comme clés et les listes de mots comme valeurs.
+        wordLen (int): La longueur du mot à sélectionner.
+
+    Returns:
+        str: Un mot aléatoire de la longueur spécifiée.
+    """
+    lenMotsDictN = len(sortedWords[wordLen])
+    return sortedWords[wordLen][random.randint(0, lenMotsDictN)]
+
+def demandeDifficulteGetWordLen() -> int:
+    """
+    Demande au joueur de choisir une difficulté et retourne la longueur du mot correspondant à cette difficulté.
+
+    Returns:
+        int: La longueur du mot correspondant à la difficulté choisie.
+    """
+    choixFait = False
+    while not choixFait:
+        difficulte = input('Choisissez la difficulté: easy/normal/hard  -> ')
+        choixFait = True
+        if difficulte == "easy":
+            lenWord = random.randint(4, 6)
+        elif difficulte == 'normal':
+            lenWord = random.randint(7, 8)
+        elif difficulte == 'hard':
+            lenWord = random.randint(9, 12)
+        else:
+            choixFait = False
+    return lenWord
 
 def runGame():
     """
@@ -77,23 +142,24 @@ def runGame():
 
     Le jeu continue jusqu'à ce que le joueur trouve toutes les lettres du mot ou fasse 5 erreurs.
     """
-    lstMot = dictionnaire('Atelier 3/Exercice 3/noms-capitales.txt')
-    indRandom = random.randint(0, len(lstMot) - 1)
-    motATrouver = lstMot[indRandom]
-    print('Chut, le mot est : ', motATrouver)
+    lstMot = dictionnaire("Atelier 3/Exercice 3/noms-capitales.txt")
+    dictMot = buildDict(lstMot)
+    lenMot = demandeDifficulteGetWordLen()
+    motATrouver = selectWord(dictMot, lenMot)
+    print("Chut, le mot est : ", motATrouver)
     nbErreur = 0
     lstIndTrouve = []
 
     while nbErreur < 5 and len(lstIndTrouve) != len(motATrouver):
         print("\nMot à trouver:")
         print(outputStr(motATrouver, lstIndTrouve))
-        
+
         try:
-            chr = str(input('\nEntrez une lettre (minuscule) -> '))
+            chr = str(input("\nEntrez une lettre (minuscule) -> "))
             chr = chr.lower()
         except:
             raise ValueError("\nUn problème est survenu lors de l'entrée de la lettre")
-          
+
         lstIndRes = placesLettre(chr, motATrouver)
         if lstIndRes == []:
             print("\nErreur! La lettre " + chr + " n'est pas dans le mot cherché ! \n")
@@ -108,20 +174,4 @@ def runGame():
     else:
         print("Bravo ! Le mot était bien ", motATrouver, "!")
 
-# runGame()
-
-def getMaxStrLen(lst: list) -> int:
-  maxLen = 0
-  for e in lst:
-    if len(e) > maxLen:
-      maxLen = len(e)
-  return maxLen
-    
-
-def build_dict(lst: list) -> dict:
-  lstMot = dictionnaire('Atelier 3/Exercice 3/noms-capitales.txt')
-  maxLen = getMaxStrLen(lstMot)
-  print(maxLen)
-  dictBuilded = {i:[] for i in range(maxLen)}
-
-build_dict([])
+runGame()
