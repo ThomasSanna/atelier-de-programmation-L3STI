@@ -42,6 +42,26 @@ def outputStr(mot: str, lPos: list) -> str:
         else:
             res += '-'
     return res
+  
+def dictionnaire(fichier: str) -> list:
+    """
+    Lit un fichier et retourne une liste de mots.
+
+    Args:
+        fichier (str): Le chemin du fichier à lire.
+
+    Returns:
+        list: Une liste de mots contenus dans le fichier.
+    """
+    lstRes = []
+    with open(fichier, 'r', encoding='utf-8') as f:
+        for line in f:
+            line = line.lower()
+            line = line.strip() # Utilisation de strip() pour enlever les espaces et les sauts de ligne
+            if '-' not in line and ' ' not in line and "'" not in line:
+              lstRes.append(line.strip()) 
+    return lstRes
+  
 
 assert outputStr('bonjour', [0, 1, 4]) == 'bo--o--'
 
@@ -57,11 +77,10 @@ def runGame():
 
     Le jeu continue jusqu'à ce que le joueur trouve toutes les lettres du mot ou fasse 5 erreurs.
     """
-    lstMot = [
-        "jouer", "bonjour", "punir", "jour", "aurevoir", "revoir", "pouvoir", "cour", "abajour", "finir", "aimer"
-    ]
+    lstMot = dictionnaire('Atelier 3/Exercice 3/noms-capitales.txt')
     indRandom = random.randint(0, len(lstMot) - 1)
     motATrouver = lstMot[indRandom]
+    print('Chut, le mot est : ', motATrouver)
     nbErreur = 0
     lstIndTrouve = []
 
@@ -89,4 +108,20 @@ def runGame():
     else:
         print("Bravo ! Le mot était bien ", motATrouver, "!")
 
-runGame()
+# runGame()
+
+def getMaxStrLen(lst: list) -> int:
+  maxLen = 0
+  for e in lst:
+    if len(e) > maxLen:
+      maxLen = len(e)
+  return maxLen
+    
+
+def build_dict(lst: list) -> dict:
+  lstMot = dictionnaire('Atelier 3/Exercice 3/noms-capitales.txt')
+  maxLen = getMaxStrLen(lstMot)
+  print(maxLen)
+  dictBuilded = {i:[] for i in range(maxLen)}
+
+build_dict([])
