@@ -116,7 +116,6 @@ def dictionnaire(fichier: str) -> list:
     return lstRes
 
 
-# Liste de mots pour les tests
 LST_MOT = ["jouer", "bonjour", "punir", "jour", "aurevoir", "revoir", "pouvoir", "cour", "abajour", 
 "finir", "aimer"]
 
