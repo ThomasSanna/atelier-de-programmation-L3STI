@@ -38,24 +38,24 @@ assert caractereValide('a') == False
 
 
 def verif_parenthese(expression: str) -> bool:
-    P = []
+    p = []
     correspondances = {')': '(', '}': '{', ']': '['}
     
     for char in expression:
         if ouvrante(char):
             # empiler les parenthèses ouvrantes
-            P.append(char)
+            p.append(char)
         elif fermante(char):
             # vérifier si la pile est vide ou si le sommet de la pile ne correspond pas
-            if P==[] or P[-1] != correspondances[char]:
+            if p == [] or p[-1] != correspondances[char]:
                 return False
             # dépiler le sommet de la pile
-            P.pop()
+            p.pop()
         elif not caractereValide(char):
             return False
     
     # vérifier si la pile est vide
-    return not P
+    return not p
 
 print(verif_parenthese("(3+2) * 6-1"))  # True
 print(verif_parenthese("((3+2)*6-1"))   # False
