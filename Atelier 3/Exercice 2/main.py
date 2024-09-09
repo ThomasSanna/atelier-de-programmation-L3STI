@@ -1,19 +1,19 @@
-def motsNLettres(lstMot: list, n: int) -> list:
+def motsNLettres(listeMots: list, n: int) -> list:
     """
     Retourne une liste de mots ayant exactement n lettres.
 
     Args:
-        lstMot (list): La liste des mots à filtrer.
+        listeMots (list): La liste des mots à filtrer.
         n (int): Le nombre de lettres que les mots doivent avoir.
 
     Returns:
         list: Une liste de mots ayant exactement n lettres.
     """
-    lstRes = []
-    for mot in lstMot:
+    resultats = []
+    for mot in listeMots:
         if len(mot) == n:
-            lstRes.append(mot)
-    return lstRes
+            resultats.append(mot)
+    return resultats
 
 
 def commencePar(mot: str, prefixe: str) -> bool:
@@ -28,7 +28,7 @@ def commencePar(mot: str, prefixe: str) -> bool:
         bool: True si le mot commence par le préfixe, False sinon.
     """
     if len(mot) < len(prefixe):
-        raise ValueError('Le préfixe est plus grand que le mot, en gros')
+        raise ValueError(f"Le préfixe '{prefixe}' est plus grand que le mot '{mot}', impossible de mettre en marche la fonction.")
     
     longPrefixe = len(prefixe)
     return mot[:longPrefixe] == prefixe
@@ -46,46 +46,64 @@ def finitPar(mot: str, suffixe: str) -> bool:
         bool: True si le mot finit par le suffixe, False sinon.
     """
     if len(mot) < len(suffixe):
-        raise ValueError('Le suffixe est plus grand que le mot, en gros')
+        raise ValueError(f"Le suffixe '{suffixe}' est plus grand que le mot '{mot}', impossible de mettre en marche la fonction.")
     
     longSuffixe = len(suffixe)
     return mot[-longSuffixe:] == suffixe
 
 
-def finissentPar(lstMot: list, suffixe: str) -> list:
+def finissentPar(listeMots: list, suffixe: str) -> list:
     """
     Retourne une liste de mots finissant par un suffixe donné.
 
     Args:
-        lstMot (list): La liste des mots à filtrer.
+        listeMots (list): La liste des mots à filtrer.
         suffixe (str): Le suffixe que les mots doivent avoir à la fin.
 
     Returns:
         list: Une liste de mots finissant par le suffixe.
     """
-    return [mot for mot in lstMot if finitPar(mot, suffixe)]
+    resultats = []
+    for mot in listeMots:
+        try:
+            if finitPar(mot, suffixe):
+                resultats.append(mot)
+        except ValueError as e:
+            # Lever l'exception pour que l'appelant puisse la gérer
+            raise e
+            # on pourrait aussi print(e) pour ne pas arrêter l'éxécution du code.
+    return resultats
 
 
-def commencentPar(lstMot: list, prefixe: str) -> list:
+def commencentPar(listeMots: list, prefixe: str) -> list:
     """
     Retourne une liste de mots commençant par un préfixe donné.
 
     Args:
-        lstMot (list): La liste des mots à filtrer.
+        listeMots (list): La liste des mots à filtrer.
         prefixe (str): Le préfixe que les mots doivent avoir au début.
 
     Returns:
         list: Une liste de mots commençant par le préfixe.
     """
-    return [mot for mot in lstMot if commencePar(mot, prefixe)]
+    resultats = []
+    for mot in listeMots:
+        try:
+            if commencePar(mot, prefixe):
+                resultats.append(mot)
+        except ValueError as e:
+            # Lever l'exception pour que l'appelant puisse la gérer
+            raise e
+            # on pourrait aussi print(e) pour ne pas arrêter l'éxécution du code.
+    return resultats
 
 
-def listeMots(lstMots: list, prefixe: str, suffixe: str, longueur: int) -> list:
+def listeMots(listeMots: list, prefixe: str, suffixe: str, longueur: int) -> list:
     """
     Retourne une liste de mots qui commencent par un préfixe, finissent par un suffixe et ont une longueur donnée.
 
     Args:
-        lstMots (list): La liste des mots à filtrer.
+        listeMots (list): La liste des mots à filtrer.
         prefixe (str): Le préfixe que les mots doivent avoir au début.
         suffixe (str): Le suffixe que les mots doivent avoir à la fin.
         longueur (int): La longueur que les mots doivent avoir.
@@ -93,10 +111,11 @@ def listeMots(lstMots: list, prefixe: str, suffixe: str, longueur: int) -> list:
     Returns:
         list: Une liste de mots répondant aux critères.
     """
-    motsPrefixe = commencentPar(lstMots, prefixe)
+    motsPrefixe = commencentPar(listeMots, prefixe)
     motsSuffixe = finissentPar(motsPrefixe, suffixe)
     motsLongueurDonnee = motsNLettres(motsSuffixe, longueur)
     return motsLongueurDonnee
+
 
 def dictionnaire(fichier: str) -> list:
     """
@@ -108,11 +127,11 @@ def dictionnaire(fichier: str) -> list:
     Returns:
         list: Une liste de mots contenus dans le fichier.
     """
-    lstRes = []
+    resultats = []
     with open(fichier, 'r', encoding='utf-8') as f:
         for line in f:
-            lstRes.append(line.strip())  # Utilisation de strip() pour enlever les espaces et les sauts de ligne
-    return lstRes
+            resultats.append(line.strip())  # Utilisation de strip() pour enlever les espaces et les sauts de ligne
+    return resultats
 
 
 LST_MOT = ["jouer", "bonjour", "punir", "jour", "aurevoir", "revoir", "pouvoir", "cour", "abajour", 
@@ -136,7 +155,7 @@ assert finissentPar(LST_MOT, "ir") == ['punir', 'aurevoir', 'revoir', 'pouvoir',
 
 assert commencentPar(LST_MOT, "bon") == ["bonjour"]
 assert commencentPar(LST_MOT, "re") == ["revoir"]
-assert commencentPar(LST_MOT, "a") == ["aurevoir", "abajour", "aimer"]
+assert commencentPar(LST_MOT, "a") == ["a", "aurevoir", "abajour", "aimer"]
 
 assert listeMots(LST_MOT, "bon", "jour", 7) == ["bonjour"]
 assert listeMots(LST_MOT, "a", "ir", 5) == []
