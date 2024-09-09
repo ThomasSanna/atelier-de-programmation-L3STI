@@ -13,6 +13,9 @@ def valMax(lst: list) -> int:
     
     Returns:
         int: La valeur maximale dans la liste.
+        
+    Raises:
+        ValueError: Si la liste lst est vide.
     """
     if not lst:
         raise ValueError('La liste est vide!')
@@ -36,6 +39,9 @@ def histo(lstFreq: list) -> list:
 
     Returns:
         list: Renvoie une liste d'entier: histogramme de lstFreq
+        
+    Raises:
+        ValueError: Si la liste lstFreq est vide.
     """
     try:
         valMaxValue = valMax(lstFreq)
@@ -61,6 +67,9 @@ def estInjective(lstFreq: list) -> bool:
 
     Returns:
         bool: True si la liste est injective, sinon False.
+        
+    Raises:
+        ValueError: lstFreq est vide donc il est impossible d'obtenir l'histogramme lstHisto
     """
     try:
         lstHisto = histo(lstFreq)
@@ -86,6 +95,9 @@ def estSurjective(lstFreq: list) -> bool:
 
     Returns:
         bool: True si la liste est surjective, sinon False.
+        
+    Raises:
+        ValueError: lstFreq est vide donc il est impossible d'obtenir l'histogramme lstHisto
     """
     try:
         lstHisto = histo(lstFreq)
@@ -110,6 +122,9 @@ def estBijective(lstFreq: list) -> bool:
 
     Returns:
         bool: True si la liste est bijective, sinon False.
+        
+    Raises:
+        ValueError: lstFreq est vide donc il est impossible d'obtenir l'histogramme lstHisto
     """
     return estInjective(lstFreq) and estSurjective(lstFreq)
 
@@ -127,6 +142,9 @@ def afficheHisto(lstFreq: list) -> None:
 
     Returns:
         None
+        
+    Raises:
+        ValueError: lstFreq est vide donc il est impossible d'obtenir l'histogramme lstHisto
     """
     try:
         lstHisto = histo(lstFreq)
@@ -163,6 +181,9 @@ def afficheHistoMatPlot(lstFreq: list) -> None:
 
     Returns:
         None
+        
+    Raises:
+        ValueError: lstFreq est vide donc il est impossible d'obtenir l'histogramme lstHisto
     """
     try:
         lstHisto = histo(lstFreq)
