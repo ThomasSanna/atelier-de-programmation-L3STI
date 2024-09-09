@@ -1,7 +1,7 @@
 import matplotlib.pyplot as plt
 
-lstFreq = [6,5,6,8,4,2,1,5]
-lstFreq2 = [2, 3, 1, 8, 9, 4, 2, 3, 2, 8, 9, 7, 4, 2, 1, 5, 6, 8, 9, 0, 8, 7, 6, 6, 3, 4, 4, 4, 2, 5]
+LST_FREQ = [6, 5, 6, 8, 4, 2, 1, 5]
+LST_FREQ_2 = [2, 3, 1, 8, 9, 4, 2, 3, 2, 8, 9, 7, 4, 2, 1, 5, 6, 8, 9, 0, 8, 7, 6, 6, 3, 4, 4, 4, 2, 5]
 
 # Fonction d'exercice 1
 def valMax(lst: list) -> int:
@@ -134,7 +134,7 @@ def afficheHisto(lstFreq: list) -> None:
 
     print(strResultat)
 
-afficheHisto(lstFreq2)
+afficheHisto(LST_FREQ_2)
 
 
 def afficheHistoMatPlot(lstFreq: list) -> None:
@@ -147,7 +147,7 @@ def afficheHistoMatPlot(lstFreq: list) -> None:
     Returns:
         None
     """
-    lstHisto = histo(lstFreq2)
+    lstHisto = histo(LST_FREQ_2)
     # Crée un histogramme en utilisant les valeurs de lstHisto
     # range(len(lstHisto)) génère les positions sur l'axe des x
     # lstHisto contient les hauteurs des barres sur l'axe des y
@@ -157,4 +157,4 @@ def afficheHistoMatPlot(lstFreq: list) -> None:
     plt.title('Histogramme')
     plt.show()
 
-afficheHistoMatPlot(lstFreq)
+afficheHistoMatPlot(LST_FREQ)
