@@ -147,7 +147,7 @@ def afficheHistoMatPlot(lstFreq: list) -> None:
     Returns:
         None
     """
-    lstHisto = histo(LST_FREQ_2)
+    lstHisto = histo(lstFreq)
     # Crée un histogramme en utilisant les valeurs de lstHisto
     # range(len(lstHisto)) génère les positions sur l'axe des x
     # lstHisto contient les hauteurs des barres sur l'axe des y
