@@ -58,7 +58,7 @@ assert histo([0, 0, 0, 0]) == [4]
 assert histo([1, 1, 1, 1]) == [0, 4]
 
 
-def estInjective(lstFreq: list) -> bool:
+def estInjective(lstHisto: list) -> bool:
     """
     Vérifie si une liste de comptage de fréquence injective (tous les éléments sont uniques).
 
@@ -67,26 +67,19 @@ def estInjective(lstFreq: list) -> bool:
 
     Returns:
         bool: True si la liste est injective, sinon False.
-        
-    Raises:
-        ValueError: lstFreq est vide donc il est impossible d'obtenir l'histogramme lstHisto
     """
-    try:
-        lstHisto = histo(lstFreq) # Fonction à la ligne 33
-    except:
-        raise ValueError("On ne peut obtenir d'histogramme avec une liste de comptage de fréquence vide. Veuillez réessayer.")
     
     for elt in lstHisto:
         if elt > 1:
             return False
     return True
 
-assert estInjective([1, 2, 3, 4]) == True
-assert estInjective([1, 2, 2, 3]) == False
-assert estInjective([0, 1, 2, 3]) == True
+assert estInjective(histo([1, 2, 3, 4])) == True
+assert estInjective(histo([1, 2, 2, 3])) == False
+assert estInjective(histo([0, 1, 2, 3])) == True
 
 
-def estSurjective(lstFreq: list) -> bool:
+def estSurjective(lstHisto: list) -> bool:
     """
     Vérifie si une liste de comptage de fréquence est surjective (chaque valeur possible apparaît au moins une fois).
 
@@ -95,25 +88,18 @@ def estSurjective(lstFreq: list) -> bool:
 
     Returns:
         bool: True si la liste est surjective, sinon False.
-        
-    Raises:
-        ValueError: lstFreq est vide donc il est impossible d'obtenir l'histogramme lstHisto
     """
-    try:
-        lstHisto = histo(lstFreq) # Fonction à la ligne 33
-    except:
-        raise ValueError("On ne peut obtenir d'histogramme avec une liste de comptage de fréquence vide. Veuillez réessayer.") 
     
     for elt in lstHisto:
         if elt < 1:
             return False
     return True
 
-assert estSurjective([0, 1, 2, 3]) == True
-assert estSurjective([1, 2, 3, 4]) == False
-assert estSurjective([0, 0, 0, 0]) == True
+assert estSurjective(histo([0, 1, 2, 3])) == True
+assert estSurjective(histo([1, 2, 3, 4])) == False
+assert estSurjective(histo([0, 0, 0, 0])) == True
 
-def estBijective(lstFreq: list) -> bool:
+def estBijective(lstHisto: list) -> bool:
     """
     Vérifie si une liste est bijective (injective et surjective).
 
@@ -122,19 +108,16 @@ def estBijective(lstFreq: list) -> bool:
 
     Returns:
         bool: True si la liste est bijective, sinon False.
-        
-    Raises:
-        ValueError: lstFreq est vide donc il est impossible d'obtenir l'histogramme lstHisto
     """
     
-    return estInjective(lstFreq) and estSurjective(lstFreq)
+    return estInjective(lstHisto) and estSurjective(lstHisto)
 
-assert estBijective([0, 1, 2, 3]) == True
-assert estBijective([1, 2, 3, 4]) == False
-assert estBijective([0, 0, 0, 0]) == False
+assert estBijective(histo([0, 1, 2, 3])) == True
+assert estBijective(histo([1, 2, 3, 4])) == False
+assert estBijective(histo([0, 0, 0, 0])) == False
 
 
-def afficheHisto(lstFreq: list) -> None:
+def afficheHisto(lstHisto: list) -> None:
     """
     Affiche un histogramme basé sur une liste de comptage de fréquences.
 
@@ -143,15 +126,7 @@ def afficheHisto(lstFreq: list) -> None:
 
     Returns:
         None, imprime le résultat à l'utilisation de la fonction
-        
-    Raises:
-        ValueError: lstFreq est vide donc il est impossible d'obtenir l'histogramme lstHisto
     """
-    
-    try:
-        lstHisto = histo(lstFreq) # Fonction à la ligne 33
-    except:
-        raise ValueError("On ne peut obtenir d'histogramme avec une liste de comptage de fréquence vide. Veuillez réessayer.")
     
     strResultat = "HISTOGRAMME \n"
     maxOcc = valMax(lstHisto) # Fonction à la ligne 7 : maxOcc permet de donner le nombre de ligne de l'histogramme imprimé
@@ -160,7 +135,7 @@ def afficheHisto(lstFreq: list) -> None:
     for ligne in range(maxOcc):
         for i, col in enumerate(lstHisto):
             if col >= maxOcc - ligne: # si la hauteur de la colonne est supérieure à la ligne actuelle
-                strResultat += " " + "#"*len(str(i)) + " "  # imprime la hauteur de la colonne. Si col > 10: on affihe ##
+                strResultat += " " + "#"*len(str(i)) + " "  # imprime la hauteur de la colonne. Si index > 10: on affihe ## par ligne, ### pour index > 100 etc...
             else:
                 strResultat += " " + " "*len(str(i)) + " "
         strResultat += '\n'
@@ -170,11 +145,11 @@ def afficheHisto(lstFreq: list) -> None:
 
     print(strResultat)
 
-afficheHisto(LST_FREQ)
-afficheHisto(LST_FREQ_2)
+afficheHisto(histo(LST_FREQ))
+afficheHisto(histo(LST_FREQ_2))
 
 
-def afficheHistoMatPlot(lstFreq: list) -> None:
+def afficheHistoMatPlot(lstHisto: list) -> None:
     """
     Affiche un histogramme basé sur une liste de fréquences en utilisant Matplotlib.
 
@@ -183,15 +158,7 @@ def afficheHistoMatPlot(lstFreq: list) -> None:
 
     Returns:
         None, ouvre ue fenêtre MatPlotLib à l'utilisation de la fonction.
-        
-    Raises:
-        ValueError: lstFreq est vide donc il est impossible d'obtenir l'histogramme lstHisto
     """
-    try:
-        lstHisto = histo(lstFreq)
-    except:
-        raise ValueError("On ne peut obtenir d'histogramme avec une liste de comptage de fréquence vide. Veuillez réessayer.")
-    
     # Crée un histogramme en utilisant les valeurs de lstHisto
     # range(len(lstHisto)) génère les positions sur l'axe des x
     # lstHisto contient les hauteurs des barres sur l'axe des y
@@ -201,5 +168,5 @@ def afficheHistoMatPlot(lstFreq: list) -> None:
     plt.title('Histogramme')
     plt.show()
 
-afficheHistoMatPlot(LST_FREQ)
-afficheHistoMatPlot(LST_FREQ_2)
+afficheHistoMatPlot(histo(LST_FREQ))
+afficheHistoMatPlot(histo(LST_FREQ_2))
