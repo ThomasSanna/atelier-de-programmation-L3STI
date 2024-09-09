@@ -12,7 +12,7 @@ def separer(lstEntier:list)->list:
   # les 0 sont automatiquements mis au milieu du fait de L'initialiation de lsep à 0
   return lsep 
 
-lstEntier = [0, -2, 1, 6, -4, -3, 2, 8, -2, 5, 6, 0, 0, 8, -38]
-print(separer(lstEntier))
+LST_ENTIER = [0, -2, 1, 6, -4, -3, 2, 8, -2, 5, 6, 0, 0, 8, -38]
+print(separer(LST_ENTIER))
 assert separer([]) == []
 assert separer([1, 2, 3]) == [3, 2, 1]
