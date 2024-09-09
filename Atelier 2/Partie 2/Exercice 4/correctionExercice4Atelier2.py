@@ -37,7 +37,11 @@ def histo(lstFreq: list) -> list:
     Returns:
         list: Renvoie une liste d'entier: histogramme de lstFreq
     """
-    valMaxValue = valMax(lstFreq)
+    try:
+        valMaxValue = valMax(lstFreq)
+    except:
+        raise ValueError('La liste de comptage de fréquence est vide. Entrer une liste non-vide')
+    
     lstHisto = [0 for i in range(valMaxValue + 1)]
     for elt in lstFreq:
         lstHisto[elt] += 1
@@ -58,7 +62,11 @@ def estInjective(lstFreq: list) -> bool:
     Returns:
         bool: True si la liste est injective, sinon False.
     """
-    lstHisto = histo(lstFreq)
+    try:
+        lstHisto = histo(lstFreq)
+    except:
+        raise ValueError("On ne peut obtenir d'histogramme avec une liste de comptage de fréquence vide. Veuillez réessayer.")
+    
     for elt in lstHisto:
         if elt > 1:
             return False
@@ -79,7 +87,11 @@ def estSurjective(lstFreq: list) -> bool:
     Returns:
         bool: True si la liste est surjective, sinon False.
     """
-    lstHisto = histo(lstFreq)
+    try:
+        lstHisto = histo(lstFreq)
+    except:
+        raise ValueError("On ne peut obtenir d'histogramme avec une liste de comptage de fréquence vide. Veuillez réessayer.") 
+    
     for elt in lstHisto:
         if elt < 1:
             return False
@@ -116,7 +128,11 @@ def afficheHisto(lstFreq: list) -> None:
     Returns:
         None
     """
-    lstHisto = histo(lstFreq)
+    try:
+        lstHisto = histo(lstFreq)
+    except:
+        raise ValueError("On ne peut obtenir d'histogramme avec une liste de comptage de fréquence vide. Veuillez réessayer.")
+    
     strResultat = "HISTOGRAMME \n"
     maxOcc = valMax(lstHisto)
 
@@ -148,7 +164,11 @@ def afficheHistoMatPlot(lstFreq: list) -> None:
     Returns:
         None
     """
-    lstHisto = histo(lstFreq)
+    try:
+        lstHisto = histo(lstFreq)
+    except:
+        raise ValueError("On ne peut obtenir d'histogramme avec une liste de comptage de fréquence vide. Veuillez réessayer.")
+    
     # Crée un histogramme en utilisant les valeurs de lstHisto
     # range(len(lstHisto)) génère les positions sur l'axe des x
     # lstHisto contient les hauteurs des barres sur l'axe des y
