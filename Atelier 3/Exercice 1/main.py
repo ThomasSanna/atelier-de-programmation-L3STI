@@ -15,7 +15,10 @@ def nomComplet(chaineEntree: str) -> str:
     if len(parties) != 2:
         raise ValueError("La chaîne d'entrée doit être au format 'nom prenom'")
     nom, prenom = parties
-    return f"{nom.upper()} {prenom.capitalize()}"
+    return f"{nom.upper()} {prenom.capitalize()}" # upper() met toutes les lettre en majuscule. capitalize(), seulement la premiere.
+
+assert nomComplet('probleme michel') == 'PROBLEME Michel'
+
 
 def estMail(chaineEntree: str) -> (int, int):
     """
@@ -35,7 +38,7 @@ def estMail(chaineEntree: str) -> (int, int):
     if '@' not in chaineEntree:
         return (0, 2)
     
-    partieLocale, partieDomaine = chaineEntree.split('@', 1) # 1 pour ne pas spliter les '@' suivants
+    partieLocale, partieDomaine = chaineEntree.split('@', 1) # 1 pour spliter seulement avec le premier "@" 
     
     if not partieLocale:
         return (0, 1)
@@ -43,15 +46,13 @@ def estMail(chaineEntree: str) -> (int, int):
     if '.' not in partieDomaine:
         return (0, 4)
     
-    nomDomaine, extensionDomaine = partieDomaine.rsplit('.', 1) # rsplit sert à partir de la droite pour ne pas spliter les '.' précédents
+    nomDomaine, extensionDomaine = partieDomaine.rsplit('.', 1) # rsplit commence à partir de la droite. 1 pour spliter seulement avec le dernier "."
     
     if not nomDomaine:
         return (0, 3)
     
     return (1, 0)
 
-# Tests
-assert nomComplet('bisgambiglia paul') == 'BISGAMBIGLIA Paul'
 
 assert estMail('bisgambiglia_paul@univ-corse.fr') == (1, 0)
 

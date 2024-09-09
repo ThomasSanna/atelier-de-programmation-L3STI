@@ -33,7 +33,7 @@ def dictionnaire(fichier: str) -> list:
             lstRes.append(line.strip())  # Utilisation de strip() pour enlever les espaces et les sauts de ligne
     return lstRes
 
-dico = dictionnaire('Atelier 3/Exercice 2/mots.txt')
+DICO = dictionnaire('Atelier 3/Exercice 2/mots.txt')
   
 
 def motCorrespond(mot: str, motif: str)-> bool:
@@ -84,11 +84,12 @@ def motPossibles (mot: str, lettres: str)-> bool:
       bool: True si le mot est possible, False sinon.
   """
   for lettre in mot:
-    if presente(lettre, lettres) == -1:
+    if presente(lettre, lettres) == -1: # fonction presente() ligne 58
       return False
   return True
 
 assert motPossibles('bonjour', 'bonjoru') == True
+assert motPossibles('bonjour', '') == False
 
 
 def motOptimaux (dico: list, lettres: str)-> list:
@@ -112,4 +113,4 @@ def motOptimaux (dico: list, lettres: str)-> list:
       lstRes.append(mot)
   return lstRes
 
-assert motOptimaux(dico, 'bonjoruususotiurizprotyuiezamqoisnxcvbpaoizeur') == ['bonjour', 'bonsoir']
+assert motOptimaux(DICO, 'bonjoruususotiurizprotyuiezamqoisnxcvbpaoizeur') == ['bonjour', 'bonsoir']

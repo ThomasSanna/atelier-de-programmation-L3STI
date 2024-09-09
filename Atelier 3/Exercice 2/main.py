@@ -97,7 +97,6 @@ def listeMots(lstMots: list, prefixe: str, suffixe: str, longueur: int) -> list:
     motsSuffixe = finissentPar(motsPrefixe, suffixe)
     motsLongueurDonnee = motsNLettres(motsSuffixe, longueur)
     return motsLongueurDonnee
-    # return list(set(commencentPar(lstMot, prefixe)) & set(finissentPar(lstMot, suffixe)) & set(motsNLettres(lstMot, n)))
 
 def dictionnaire(fichier: str) -> list:
     """
