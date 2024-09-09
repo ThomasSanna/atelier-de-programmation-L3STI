@@ -1,16 +1,18 @@
-def separer(L:list)->list:
-  indNeg = 0
-  indPos = -1
-  lsep = [0 for i in range(len(L))]
-  for elt in L:
+def separer(lstEntier:list)->list:
+  indNegatif = 0
+  indPositif = -1
+  lsep = [0 for i in range(len(lstEntier))]
+  for elt in lstEntier:
     if elt < 0:
-      lsep[indNeg] = elt
-      indNeg += 1
+      lsep[indNegatif] = elt
+      indNegatif += 1
     elif elt > 0:
-      lsep[indPos] = elt
-      indPos -= 1
-  return lsep
+      lsep[indPositif] = elt
+      indPositif -= 1
+  # les 0 sont automatiquements mis au milieu du fait de L'initialiation de lsep à 0
+  return lsep 
 
-L = [0, -2, 1, 6, -4, -3, 2, 8, -2, 5, 6, 0, 0, 8, -38]
-print(separer(L))
-      
+lstEntier = [0, -2, 1, 6, -4, -3, 2, 8, -2, 5, 6, 0, 0, 8, -38]
+print(separer(lstEntier))
+assert separer([]) == []
+assert separer([1, 2, 3]) == [3, 2, 1]
