@@ -134,6 +134,7 @@ def afficheHisto(lstFreq: list) -> None:
 
     print(strResultat)
 
+afficheHisto(LST_FREQ)
 afficheHisto(LST_FREQ_2)
 
 
@@ -158,3 +159,4 @@ def afficheHistoMatPlot(lstFreq: list) -> None:
     plt.show()
 
 afficheHistoMatPlot(LST_FREQ)
+afficheHistoMatPlot(LST_FREQ_2)
