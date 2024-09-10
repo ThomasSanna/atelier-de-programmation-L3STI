@@ -133,32 +133,38 @@ def dictionnaire(fichier: str) -> list:
             resultats.append(line.strip())  # Utilisation de strip() pour enlever les espaces et les sauts de ligne
     return resultats
 
+def main():
+    """
+    Point d'entrée du programme
+    """
+    LST_MOT = ["jouer", "bonjour", "punir", "jour", "aurevoir", "revoir", "pouvoir", "cour", "abajour", 
+    "finir", "aimer"]
 
-LST_MOT = ["jouer", "bonjour", "punir", "jour", "aurevoir", "revoir", "pouvoir", "cour", "abajour", 
-"finir", "aimer"]
+    assert motsNLettres(LST_MOT, 5) == ['jouer', 'punir', 'finir', 'aimer']
+    assert motsNLettres(LST_MOT, 4) == ["jour", "cour"]
+    assert motsNLettres(LST_MOT, 7) == ['bonjour', 'pouvoir', 'abajour']
 
-assert motsNLettres(LST_MOT, 5) == ['jouer', 'punir', 'finir', 'aimer']
-assert motsNLettres(LST_MOT, 4) == ["jour", "cour"]
-assert motsNLettres(LST_MOT, 7) == ['bonjour', 'pouvoir', 'abajour']
+    assert commencePar("bonjour", "bon") == True
+    assert commencePar("bonjour", "jour") == False
+    assert commencePar("aimer", "aim") == True
 
-assert commencePar("bonjour", "bon") == True
-assert commencePar("bonjour", "jour") == False
-assert commencePar("aimer", "aim") == True
+    assert finitPar("bonjour", "jour") == True
+    assert finitPar("bonjour", "bon") == False
+    assert finitPar("aimer", "mer") == True
 
-assert finitPar("bonjour", "jour") == True
-assert finitPar("bonjour", "bon") == False
-assert finitPar("aimer", "mer") == True
+    assert finissentPar(LST_MOT, "jour") == ["bonjour", "jour", "abajour"]
+    assert finissentPar(LST_MOT, "voir") == ["aurevoir", "revoir", "pouvoir"]
+    assert finissentPar(LST_MOT, "ir") == ['punir', 'aurevoir', 'revoir', 'pouvoir', 'finir']
 
-assert finissentPar(LST_MOT, "jour") == ["bonjour", "jour", "abajour"]
-assert finissentPar(LST_MOT, "voir") == ["aurevoir", "revoir", "pouvoir"]
-assert finissentPar(LST_MOT, "ir") == ['punir', 'aurevoir', 'revoir', 'pouvoir', 'finir']
+    assert commencentPar(LST_MOT, "bon") == ["bonjour"]
+    assert commencentPar(LST_MOT, "re") == ["revoir"]
+    assert commencentPar(LST_MOT, "a") == ["a", "aurevoir", "abajour", "aimer"]
 
-assert commencentPar(LST_MOT, "bon") == ["bonjour"]
-assert commencentPar(LST_MOT, "re") == ["revoir"]
-assert commencentPar(LST_MOT, "a") == ["a", "aurevoir", "abajour", "aimer"]
+    assert listeMots(LST_MOT, "bon", "jour", 7) == ["bonjour"]
+    assert listeMots(LST_MOT, "a", "ir", 5) == []
+    assert listeMots(LST_MOT, "re", "ir", 6) == ["revoir"]
 
-assert listeMots(LST_MOT, "bon", "jour", 7) == ["bonjour"]
-assert listeMots(LST_MOT, "a", "ir", 5) == []
-assert listeMots(LST_MOT, "re", "ir", 6) == ["revoir"]
+    assert dictionnaire('Atelier 3/Exercice 2/mots.txt') == ['bonjour', 'bonsoir', 'ça', 'va', 'moi', 'super', 'merci', 'je', 'vous', 'en', 'prie', 'non', 'pas', 'de', 'soucis']
 
-assert dictionnaire('Atelier 3/Exercice 2/mots.txt') == ['bonjour', 'bonsoir', 'ça', 'va', 'moi', 'super', 'merci', 'je', 'vous', 'en', 'prie', 'non', 'pas', 'de', 'soucis']
+if __name__ == '__main__':
+    main()

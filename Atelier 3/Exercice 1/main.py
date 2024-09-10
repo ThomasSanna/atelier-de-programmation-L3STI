@@ -100,7 +100,6 @@ def verifMailRegex(email: str)->bool:
     emailRegexRaw = '^[A-Za-z0-9\\.\\_\\%\\+\\-]+@[A-Za-z0-9\\.\\-]+\\.[A-Za-z]{2,}$'
     # emailRegexRaw = r'^[A-Za-z0-9\._%+\-]+@[A-Za-z0-9\.\-]+\.[A-Za-z]{2,}$'
     # r : raw string. Permet de ne pas interpréter les caractères spéciaux comme des caractères spéciaux. Ce qui simplifie l'écriture des regex.
-    # Exemple sans le r à la ligne 111.
     
     # ^ : début de la chaîne
     # [A-Za-z0-9\._%+\-]+ : partie locale de l'email. "." et "-" ont besoin d'être précédés d'un "\" car ils sont des caractères spéciaux en regex. "+" à la fin du crochet signifie que le caractère précédent doit être présent au moins une fois.
@@ -110,11 +109,8 @@ def verifMailRegex(email: str)->bool:
     # [A-Za-z]{2,} : extension de domaine. "{2,}" signifie que le caractère précédent doit être présent au moins 2 fois.
     # $ : fin de la chaîne
     
-    # Exemple sans le r:
-    
-    return re.match(emailRegexRaw, email)
-
-
+    # On est obligé d'expliciter True ou False car on nous renvoie None si ça ne match pas, ou un objet re sinon.
+    return  bool(re.match(emailRegexRaw, email))
 
 
 def main():
@@ -156,4 +152,3 @@ def main():
     
 if __name__ == "__main__":
     main()
-    

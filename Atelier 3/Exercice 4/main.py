@@ -133,5 +133,6 @@ def main():
     
     print("---- Tests Exercice 4 OK ----")
     
+    
 if __name__ == "__main__":
     main()
