@@ -99,11 +99,12 @@ def motsOptimaux(dico: list, lettres: str) -> list:
     longueurMaximale = 0
     for mot in dico:
         longueurMot = len(mot)
-        if motPossible(mot, lettres) and longueurMot > longueurMaximale:
-            resultats = [mot]
-            longueurMaximale = longueurMot
-        elif motPossible(mot, lettres) and longueurMot == longueurMaximale:
-            resultats.append(mot)
+        if motPossible(mot, lettres):
+            if longueurMot > longueurMaximale:
+                resultats = [mot]
+                longueurMaximale = longueurMot
+            elif longueurMot == longueurMaximale:
+                resultats.append(mot)
     return resultats
 
 
@@ -111,12 +112,13 @@ def main():
     """
     Point d'entrée du programme
     """
+    DICO = dictionnaire('Atelier 3/Exercice 2/mots.txt')
+    
     assert motsNLettres(["jouer", "bonjour", "punir", "jour", "aurevoir"], 5) == ["jouer", "punir"]
     assert motsNLettres(["jour", "cour", "aimer"], 4) == ["jour", "cour"]
     assert motsNLettres(["bonjour", "revoir", "pouvoir", "abajour", "aurevoir"], 7) == ["bonjour", "pouvoir", "abajour"]
     
     assert dictionnaire('Atelier 3/Exercice 2/mots.txt') == ['bonjour', 'bonsoir', 'ça', 'va', 'moi', 'super', 'merci', 'je', 'vous', 'en', 'prie', 'non', 'pas', 'de', 'soucis']
-    DICO = dictionnaire('Atelier 3/Exercice 2/mots.txt')
     
     assert motCorrespond("bonjour", "b-nj--r") == True
     assert motCorrespond("bonjour", "b-nj--t") == False
