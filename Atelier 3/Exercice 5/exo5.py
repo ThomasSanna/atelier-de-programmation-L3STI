@@ -139,16 +139,16 @@ def verif_parenthese(expression: str) -> bool:
         return True
     
     pile = []
-    correspondances = {")": "(", "}": "{", "]": "["}
+    correspondancesReverse = {")": "(", "}": "{", "]": "["}
 
-    for char in expression:
-        if ouvrante(char):
-            pile.append(char) # on ajoute un caractere ouvrant dans la pile. Si on a trouvé sa correspondante fermante, le couple de caracteres se dépilent
-        elif fermante(char):
-            if not pile or pile[-1] != correspondances[char]:
+    for car in expression:
+        if ouvrante(car):
+            pile.append(car) # on ajoute un caractere ouvrant dans la pile. Si on a trouvé sa correspondante fermante, le couple de caracteres se dépilent
+        elif fermante(car):
+            if not pile or pile[-1] != correspondancesReverse[car]: # ie si on a trouvé un caractere fermant mais sans en avoir trouvé un ouvrant correspondant avant.
                 return False
-            pile.pop()
-        elif not caractere_valide(char):
+            pile.pop() # on dépile la derniere valeur, qui est le caractere ouvrant correspondant à celui qui le ferme
+        elif not caractere_valide(car):
             return False
 
     return not pile
