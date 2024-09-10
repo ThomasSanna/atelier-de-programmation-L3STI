@@ -13,6 +13,9 @@ def ouvrante(car: str) -> bool:
     """
     if not car:
         raise ValueError("Le caractère d'entrée doit être une chaîne non vide.")
+    elif len(car) > 1:
+        raise ValueError(f"Le caractère est trop grand. Il a une taille de {len(car)} et non 1...")
+    
     return car in "({["
 
 
@@ -31,6 +34,9 @@ def fermante(car: str) -> bool:
     """
     if not car:
         raise ValueError("Le caractère d'entrée doit être une chaîne non vide.")
+    elif len(car) > 1:
+        raise ValueError(f"Le caractère est trop grand. Il a une taille de {len(car)} et non 1...")
+    
     return car in ")}]"
 
 
@@ -49,6 +55,9 @@ def renverse(car: str) -> str:
     """
     if not car:
         raise ValueError("Le caractère d'entrée doit être une chaîne non vide.")
+    elif len(car) > 1:
+        raise ValueError(f"Le caractère est trop grand. Il a une taille de {len(car)} et non 1...")
+    
     correspondance = {")": "(", "}": "{", "]": "["}
     return correspondance.get(car, car)
 
@@ -68,6 +77,9 @@ def operateur(car: str) -> bool:
     """
     if not car:
         raise ValueError("Le caractère d'entrée doit être une chaîne non vide.")
+    elif len(car) > 1:
+        raise ValueError(f"Le caractère est trop grand. Il a une taille de {len(car)} et non 1...")
+    
     return car in "+*-"
 
 
@@ -86,6 +98,9 @@ def nombre(car: str) -> bool:
     """
     if not car:
         raise ValueError("La chaîne d'entrée doit être non vide.")
+    elif len(car) > 1:
+        raise ValueError(f"Le caractère est trop grand. Il a une taille de {len(car)} et non 1...")
+    
     return car.isdigit()
 
 
@@ -104,6 +119,9 @@ def caractere_valide(car: str) -> bool:
     """
     if not car:
         raise ValueError("Le caractère d'entrée doit être une chaîne non vide.")
+    elif len(car) > 1:
+        raise ValueError(f"Le caractère est trop grand. Il a une taille de {len(car)} et non 1...")
+    
     return car in "(){}[]+-* " or car.isdigit()
 
 
@@ -125,7 +143,7 @@ def verif_parenthese(expression: str) -> bool:
 
     for char in expression:
         if ouvrante(char):
-            pile.append(char)
+            pile.append(char) # on ajoute un caractere ouvrant dans la pile. Si on a trouvé sa correspondante fermante, le couple de caracteres se dépilent
         elif fermante(char):
             if not pile or pile[-1] != correspondances[char]:
                 return False
