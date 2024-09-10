@@ -112,10 +112,7 @@ def verifMailRegex(email: str)->bool:
     
     # Exemple sans le r:
     
-    if re.match(emailRegexRaw, email):
-        return True
-    else:
-        return False
+    return re.match(emailRegexRaw, email)
 
 
 
@@ -159,3 +156,4 @@ def main():
     
 if __name__ == "__main__":
     main()
+    
