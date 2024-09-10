@@ -79,6 +79,8 @@ def motPossible(mot: str, lettres: str) -> bool:
     for lettre in mot:
         if presente(lettre, lettres) == -1:
             return False
+        lettres = lettres.replace(lettre, '', 1)
+        print(lettres)
     return True
 
 
@@ -124,8 +126,9 @@ def main():
     assert presente('j', 'bonjour') == 3
     assert presente('z', 'bonjour') == -1
 
-    assert motPossible('bonjour', 'bonjoru') == True
+    assert motPossible('bonjourr', 'bonjoru') == False # double 'r' qui ne figurent pas dans les lettres proposées
     assert motPossible('bonjour', '') == False
+    assert motPossible('bonjour', 'bonjoru') == True
     
     assert motsOptimaux(DICO, 'bonjoruususotiurizprotyuiezamqoisnxcvbpaoizeur') == ['bonjour', 'bonsoir']
     assert motsOptimaux(DICO, 'abc') == []
