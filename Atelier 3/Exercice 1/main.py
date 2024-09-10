@@ -1,4 +1,4 @@
-import re # sers pour regex
+import re # servira pour regex
 
 
 def nomComplet(chaineEntree: str) -> str:
@@ -72,9 +72,10 @@ def estMail(chaineEntree: str) -> (int, int):
     # gestion des caractères interdits
     CARACTERES_INTERDITS = '()<>@,;:\\"[]'
     chaineEntreeSansArobase = partieDomaine + partieLocale
+    
     erreur = False
     i = 0
-    while not erreur and i<len(chaineEntreeSansArobase):
+    while not erreur and i < len(chaineEntreeSansArobase):
         if chaineEntreeSansArobase[i] in CARACTERES_INTERDITS:
             erreur = True
         i += 1
@@ -84,19 +85,20 @@ def estMail(chaineEntree: str) -> (int, int):
     return (1, 0)
 
 
-# Exemple de code avec regex :
 
+# Exemple de code avec regex :
 def verifMailRegex(email: str)->bool:
     """
     Vérifie si un mail est correcte. Ne renvoie pas de statut d'erreur, seulement un booléen.
 
     Args:
-        email (_type_): _description_
+        email (str): un email
 
     Returns:
-        _type_: _description_
+        bool: renvoie True si l'email est conforme au regex
     """
-    email_regex = r'^[A-Za-z0-9\._%+\-]+@[A-Za-z0-9\.\-]+\.[A-Za-z]{2,}$'
+    emailRegexRaw = '^[A-Za-z0-9\\.\\_\\%\\+\\-]+@[A-Za-z0-9\\.\\-]+\\.[A-Za-z]{2,}$'
+    # emailRegexRaw = r'^[A-Za-z0-9\._%+\-]+@[A-Za-z0-9\.\-]+\.[A-Za-z]{2,}$'
     # r : raw string. Permet de ne pas interpréter les caractères spéciaux comme des caractères spéciaux. Ce qui simplifie l'écriture des regex.
     # Exemple sans le r à la ligne 111.
     
@@ -109,9 +111,8 @@ def verifMailRegex(email: str)->bool:
     # $ : fin de la chaîne
     
     # Exemple sans le r:
-    email_regex = '^[A-Za-z0-9\\.\\_\\%\\+\\-]+@[A-Za-z0-9\\.\\-]+\\.[A-Za-z]{2,}$'
     
-    if re.match(email_regex, email):
+    if re.match(emailRegexRaw, email):
         return True
     else:
         return False
@@ -120,6 +121,9 @@ def verifMailRegex(email: str)->bool:
 
 
 def main():
+    """
+    Fonction d'entrée du programme
+    """
     assert estMail('bisgambiglia_paul@univ-corse.fr') == (1, 0)
     assert estMail('20224444@gmail.com') == (1, 0)
 
@@ -139,6 +143,7 @@ def main():
     
     print("Tous les tests ont été effectués pour la fonction estMail.\n")
     
+    # ---- Tests verifMailRegex ----
     print("Tests de la fonction verifMailRegex")
     emails = [
         "exemple@test.com",
