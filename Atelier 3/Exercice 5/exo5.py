@@ -9,7 +9,7 @@ def ouvrante(car: str) -> bool:
         bool: True si le caractère est '(', '{', ou '[', sinon False.
 
     Raises:
-        ValueError: Si le caractère est une chaîne vide.
+        ValueError: Si le caractère est une chaine de longueure différente de 1.
     """
     if not car:
         raise ValueError("Le caractère d'entrée doit être une chaîne non vide.")
@@ -30,7 +30,7 @@ def fermante(car: str) -> bool:
         bool: True si le caractère est ')', '}', ou ']', sinon False.
 
     Raises:
-        ValueError: Si le caractère est une chaîne vide.
+        ValueError: Si le caractère est une chaine de longueure différente de 1.
     """
     if not car:
         raise ValueError("Le caractère d'entrée doit être une chaîne non vide.")
@@ -51,7 +51,7 @@ def renverse(car: str) -> str:
         str: Le caractère ouvrant correspondant, ou le caractère lui-même s'il n'est pas trouvé.
 
     Raises:
-        ValueError: Si le caractère est une chaîne vide.
+        ValueError: Si le caractère est une chaine de longueure différente de 1.
     """
     if not car:
         raise ValueError("Le caractère d'entrée doit être une chaîne non vide.")
@@ -73,7 +73,7 @@ def operateur(car: str) -> bool:
         bool: True si le caractère est '+', '*', ou '-', sinon False.
 
     Raises:
-        ValueError: Si le caractère est une chaîne vide.
+        ValueError: Si le caractère est une chaine de longueure différente de 1.
     """
     if not car:
         raise ValueError("Le caractère d'entrée doit être une chaîne non vide.")
@@ -94,7 +94,7 @@ def nombre(car: str) -> bool:
         bool: True si la chaîne est numérique, sinon False.
 
     Raises:
-        ValueError: Si la chaîne est vide.
+        ValueError: Si le caractère est une chaine de longueure différente de 1.
     """
     if not car:
         raise ValueError("La chaîne d'entrée doit être non vide.")
@@ -115,7 +115,7 @@ def caractere_valide(car: str) -> bool:
         bool: True si le caractère est un chiffre, un opérateur, une parenthèse, une accolade, un crochet ou un espace, sinon False.
 
     Raises:
-        ValueError: Si le caractère est une chaîne vide.
+        ValueError: Si le caractère est une chaine de longueure différente de 1.
     """
     if not car:
         raise ValueError("Le caractère d'entrée doit être une chaîne non vide.")
