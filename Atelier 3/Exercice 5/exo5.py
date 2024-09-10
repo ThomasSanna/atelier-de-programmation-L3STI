@@ -135,45 +135,49 @@ def verif_parenthese(expression: str) -> bool:
 
     return not pile
 
+def main():
+    assert ouvrante("(") == True
+    assert ouvrante("{") == True
+    assert ouvrante("[") == True
+    assert ouvrante(")") == False
+    assert ouvrante("a") == False
 
-# Tests
-assert ouvrante("(") == True
-assert ouvrante("{") == True
-assert ouvrante("[") == True
-assert ouvrante(")") == False
-assert ouvrante("a") == False
+    assert fermante(")") == True
+    assert fermante("}") == True
+    assert fermante("]") == True
+    assert fermante("(") == False
+    assert fermante("a") == False
 
-assert fermante(")") == True
-assert fermante("}") == True
-assert fermante("]") == True
-assert fermante("(") == False
-assert fermante("a") == False
+    assert renverse(")") == "("
+    assert renverse("}") == "{"
+    assert renverse("]") == "["
+    assert renverse("(") == "("
+    assert renverse("a") == "a"
 
-assert renverse(")") == "("
-assert renverse("}") == "{"
-assert renverse("]") == "["
-assert renverse("(") == "("
-assert renverse("a") == "a"
+    assert operateur("+") == True
+    assert operateur("*") == True
+    assert operateur("-") == True
+    assert operateur("/") == False
+    assert operateur("a") == False
 
-assert operateur("+") == True
-assert operateur("*") == True
-assert operateur("-") == True
-assert operateur("/") == False
-assert operateur("a") == False
+    assert nombre("123") == True
+    assert nombre("0") == True
+    assert nombre("a") == False
+    assert nombre("1a") == False
 
-assert nombre("123") == True
-assert nombre("0") == True
-assert nombre("a") == False
-assert nombre("1a") == False
+    assert caractere_valide("1") == True
+    assert caractere_valide("+") == True
+    assert caractere_valide("(") == True
+    assert caractere_valide(" ") == True
+    assert caractere_valide("a") == False
 
-assert caractere_valide("1") == True
-assert caractere_valide("+") == True
-assert caractere_valide("(") == True
-assert caractere_valide(" ") == True
-assert caractere_valide("a") == False
-
-assert verif_parenthese("()") == True
-assert verif_parenthese("({[]})") == True
-assert verif_parenthese("({[})") == False
-assert verif_parenthese("({[a]})") == False
-assert verif_parenthese("") == True
+    assert verif_parenthese("()") == True
+    assert verif_parenthese("({[]})") == True
+    assert verif_parenthese("({[})") == False
+    assert verif_parenthese("({[a]})") == False
+    assert verif_parenthese("") == True
+    
+    print('---- Tests OK ----')
+    
+if __name__ == "__main__":
+    main()
