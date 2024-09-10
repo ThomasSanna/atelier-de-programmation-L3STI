@@ -138,7 +138,6 @@ def verif_parenthese(expression: str) -> bool:
         return True
     
     pile = []
-    correspondancesReverse = {")": "(", "}": "{", "]": "["}
 
     for car in expression:
         if ouvrante(car):
