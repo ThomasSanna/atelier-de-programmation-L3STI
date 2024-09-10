@@ -1,3 +1,5 @@
+import re
+
 def ouvrante(car: str) -> bool:
     """
     Vérifie si le caractère est une parenthèse, une accolade ou un crochet ouvrant.
@@ -98,10 +100,9 @@ def nombre(car: str) -> bool:
     """
     if not car:
         raise ValueError("La chaîne d'entrée doit être non vide.")
-    elif len(car) > 1:
-        raise ValueError(f"Le caractère est trop grand. Il a une taille de {len(car)} et non 1...")
     
-    return car.isdigit()
+    # return car.isdigit()
+    return bool(re.match('^[0-9]+$', car))
 
 
 def caractere_valide(car: str) -> bool:
@@ -119,8 +120,6 @@ def caractere_valide(car: str) -> bool:
     """
     if not car:
         raise ValueError("Le caractère d'entrée doit être une chaîne non vide.")
-    elif len(car) > 1:
-        raise ValueError(f"Le caractère est trop grand. Il a une taille de {len(car)} et non 1...")
     
     return car in "(){}[]+-* " or car.isdigit()
 
@@ -145,7 +144,7 @@ def verif_parenthese(expression: str) -> bool:
         if ouvrante(car):
             pile.append(car) # on ajoute un caractere ouvrant dans la pile. Si on a trouvé sa correspondante fermante, le couple de caracteres se dépilent
         elif fermante(car):
-            if not pile or pile[-1] != correspondancesReverse[car]: # ie si on a trouvé un caractere fermant mais sans en avoir trouvé un ouvrant correspondant avant.
+            if not pile or pile[-1] != renverse(car): # ie si on a trouvé un caractere fermant mais sans en avoir trouvé un ouvrant correspondant avant.
                 return False
             pile.pop() # on dépile la derniere valeur, qui est le caractere ouvrant correspondant à celui qui le ferme
         elif not caractere_valide(car):
