@@ -63,7 +63,7 @@ def estInjective(lstHisto: list) -> bool:
     Vérifie si une liste de comptage de fréquence injective (tous les éléments sont uniques).
 
     Args:
-        lstFreq (list): Une liste de comptage de fréquence d'entiers.
+        lstHisto (list): Une liste histogramme d'une liste de comptage de fréquence.
 
     Returns:
         bool: True si la liste est injective, sinon False.
@@ -84,7 +84,7 @@ def estSurjective(lstHisto: list) -> bool:
     Vérifie si une liste de comptage de fréquence est surjective (chaque valeur possible apparaît au moins une fois).
 
     Args:
-        lstFreq (list): Une liste de comptage de fréquence d'entiers.
+        lstHisto (list): Une liste histogramme d'une liste de comptage de fréquence.
 
     Returns:
         bool: True si la liste est surjective, sinon False.
@@ -104,7 +104,7 @@ def estBijective(lstHisto: list) -> bool:
     Vérifie si une liste est bijective (injective et surjective).
 
     Args:
-        lstFreq (list): Une liste d'entiers.
+        lstHisto (list): Une liste histogramme d'une liste de comptage de fréquence.
 
     Returns:
         bool: True si la liste est bijective, sinon False.
@@ -119,17 +119,24 @@ assert estBijective(histo([0, 0, 0, 0])) == False
 
 def afficheHisto(lstHisto: list) -> None:
     """
-    Affiche un histogramme basé sur une liste de comptage de fréquences.
+    Affiche un histogramme basé sur une liste histogramme.
 
     Args:
-        lstFreq (list): Liste des fréquences à partir desquelles l'histogramme est généré.
+        lstHisto (list): Liste de l'histogramme d'une liste de comptage de fréquence.
 
     Returns:
         None, imprime le résultat à l'utilisation de la fonction
+        
+    Raises:
+        ValueError: Si la liste lstHisto est vide.
     """
     
     strResultat = "HISTOGRAMME \n"
-    maxOcc = valMax(lstHisto) # Fonction à la ligne 7 : maxOcc permet de donner le nombre de ligne de l'histogramme imprimé
+    
+    try:
+        maxOcc = valMax(lstHisto) # Fonction à la ligne 7 : maxOcc permet de donner le nombre de ligne de l'histogramme imprimé
+    except:
+        raise ValueError('La liste de comptage de fréquence est vide. Entrer une liste non-vide')
 
     # construction de l'histogramme ligne par ligne
     for ligne in range(maxOcc):
