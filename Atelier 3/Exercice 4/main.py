@@ -12,10 +12,6 @@ def motsNLettres(listeMots: list, n: int) -> list:
     resultats = [mot for mot in listeMots if len(mot) == n]
     return resultats
 
-assert motsNLettres(["jouer", "bonjour", "punir", "jour", "aurevoir"], 5) == ["jouer", "punir"]
-assert motsNLettres(["jour", "cour", "aimer"], 4) == ["jour", "cour"]
-assert motsNLettres(["bonjour", "revoir", "pouvoir", "abajour", "aurevoir"], 7) == ["bonjour", "pouvoir", "abajour"]
-
 
 def dictionnaire(fichier: str) -> list:
     """
@@ -34,10 +30,6 @@ def dictionnaire(fichier: str) -> list:
     except FileNotFoundError:
         print(f"Erreur : le fichier {fichier} n'a pas été trouvé.")
     return resultats
-
-assert dictionnaire('Atelier 3/Exercice 2/mots.txt') == ['bonjour', 'bonsoir', 'ça', 'va', 'moi', 'super', 'merci', 'je', 'vous', 'en', 'prie', 'non', 'pas', 'de', 'soucis']
-
-DICO = dictionnaire('Atelier 3/Exercice 2/mots.txt')
 
 
 def motCorrespond(mot: str, motif: str) -> bool:
@@ -58,10 +50,6 @@ def motCorrespond(mot: str, motif: str) -> bool:
             return False
     return True
 
-assert motCorrespond("bonjour", "b-nj--r") == True
-assert motCorrespond("bonjour", "b-nj--t") == False
-assert motCorrespond("aimer", "a-m-r") == True
-
 
 def presente(lettre: str, mot: str) -> int:
     """
@@ -75,10 +63,6 @@ def presente(lettre: str, mot: str) -> int:
         int: La position de la lettre dans le mot, -1 si la lettre n'est pas présente.
     """
     return mot.find(lettre)
-
-assert presente('b', 'bonjour') == 0
-assert presente('j', 'bonjour') == 3
-assert presente('z', 'bonjour') == -1
 
 
 def motPossible(mot: str, lettres: str) -> bool:
@@ -96,9 +80,6 @@ def motPossible(mot: str, lettres: str) -> bool:
         if presente(lettre, lettres) == -1:
             return False
     return True
-
-assert motPossible('bonjour', 'bonjoru') == True
-assert motPossible('bonjour', '') == False
 
 
 def motsOptimaux(dico: list, lettres: str) -> list:
@@ -123,6 +104,34 @@ def motsOptimaux(dico: list, lettres: str) -> list:
             resultats.append(mot)
     return resultats
 
-assert motsOptimaux(DICO, 'bonjoruususotiurizprotyuiezamqoisnxcvbpaoizeur') == ['bonjour', 'bonsoir']
-assert motsOptimaux(DICO, 'abc') == []
-assert motsOptimaux(DICO, 'sueemrepci') == ['super', 'merci']
+
+def main():
+    """
+    Point d'entrée du programme
+    """
+    assert motsNLettres(["jouer", "bonjour", "punir", "jour", "aurevoir"], 5) == ["jouer", "punir"]
+    assert motsNLettres(["jour", "cour", "aimer"], 4) == ["jour", "cour"]
+    assert motsNLettres(["bonjour", "revoir", "pouvoir", "abajour", "aurevoir"], 7) == ["bonjour", "pouvoir", "abajour"]
+    
+    assert dictionnaire('Atelier 3/Exercice 2/mots.txt') == ['bonjour', 'bonsoir', 'ça', 'va', 'moi', 'super', 'merci', 'je', 'vous', 'en', 'prie', 'non', 'pas', 'de', 'soucis']
+    DICO = dictionnaire('Atelier 3/Exercice 2/mots.txt')
+    
+    assert motCorrespond("bonjour", "b-nj--r") == True
+    assert motCorrespond("bonjour", "b-nj--t") == False
+    assert motCorrespond("aimer", "a-m-r") == True
+    
+    assert presente('b', 'bonjour') == 0
+    assert presente('j', 'bonjour') == 3
+    assert presente('z', 'bonjour') == -1
+
+    assert motPossible('bonjour', 'bonjoru') == True
+    assert motPossible('bonjour', '') == False
+    
+    assert motsOptimaux(DICO, 'bonjoruususotiurizprotyuiezamqoisnxcvbpaoizeur') == ['bonjour', 'bonsoir']
+    assert motsOptimaux(DICO, 'abc') == []
+    assert motsOptimaux(DICO, 'sueemrepci') == ['super', 'merci']
+    
+    print("---- Tests Exercice 4 OK ----")
+    
+if __name__ == "__main__":
+    main()

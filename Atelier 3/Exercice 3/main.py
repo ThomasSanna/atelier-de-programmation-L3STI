@@ -14,15 +14,18 @@ def placesLettre(ch: str, mot: str) -> list:
     Raises:
         ValueError: Si l'entrée de la lettre n'est pas valide (longueur différente de 1).
     """
+    # gestion des erreurs de saisie
+    if len(ch) < 1:
+        raise ValueError("Vous devez entrer une lettre.")
+    elif len(ch) > 1:
+        raise ValueError(f"Vous devez entrer qu'un seul caractère, pas {len(ch)}.")
+    
     indRes = []
-    if len(ch) != 1:
-        raise ValueError("Un problème est survenu lors de l'entrée de la lettre")
     for i, elt in enumerate(mot):
         if elt == ch:
             indRes.append(i)
     return indRes
 
-assert placesLettre("m", "maman") == [0, 2]
 
 def outputStr(mot: str, lPos: list) -> str:
     """
@@ -43,7 +46,6 @@ def outputStr(mot: str, lPos: list) -> str:
             res += "-"
     return res
 
-assert outputStr("bonjour", [0, 1, 4]) == "bo--o--"
 
 def dictionnaire(fichier: str) -> list:
     """
@@ -66,8 +68,6 @@ def dictionnaire(fichier: str) -> list:
                 lstRes.append(line.strip())
     return lstRes
 
-lstMot = dictionnaire("Atelier 3/Exercice 3/noms-capitales.txt")
-lstPendu = ["|---] ", "| O ", "| T ", "|/ \ ", "|______"]
 
 def getMaxStrLen(lst: list) -> int:
     """
@@ -85,21 +85,23 @@ def getMaxStrLen(lst: list) -> int:
             maxLen = len(e)
     return maxLen
 
-def buildDict(lst: list) -> dict:
+
+def buildDict(lstMots: list) -> dict:
     """
     Construit un dictionnaire où les clés sont les longueurs des mots et les valeurs sont des listes de mots de cette longueur.
 
     Args:
-        lst (list): Une liste de mots.
+        lstMot (list): Une liste de mots.
 
     Returns:
         dict: Un dictionnaire avec les longueurs des mots comme clés et les listes de mots comme valeurs.
     """
-    maxLen = getMaxStrLen(lstMot)
+    maxLen = getMaxStrLen(lstMots)
     dictBuilded = {i: [] for i in range(4, maxLen+1)}
-    for mot in lstMot:
+    for mot in lstMots:
         dictBuilded[len(mot)].append(mot)
     return dictBuilded
+
 
 def selectWord(sortedWords: dict, wordLen: int) -> str:
     """
@@ -114,6 +116,7 @@ def selectWord(sortedWords: dict, wordLen: int) -> str:
     """
     lenMotsDictN = len(sortedWords[wordLen])
     return sortedWords[wordLen][random.randint(0, lenMotsDictN-1)]
+
 
 def demandeDifficulteGetWordLen() -> int:
     """
@@ -136,42 +139,73 @@ def demandeDifficulteGetWordLen() -> int:
             choixFait = False
     return lenWord
 
-def runGame():
+
+def runGame(LST_MOTS: list, LST_PENDU: list):
     """
     Lance le jeu du pendu. Le joueur doit deviner un mot en entrant des lettres une par une.
 
     Le jeu continue jusqu'à ce que le joueur trouve toutes les lettres du mot ou fasse 5 erreurs.
+    
+    Args:
+        LST_MOTS (list): Une liste de mots.
+        LST_PENDU (list): Une liste de lignes pour dessiner le pendu.
+        
+    Raises:
+        ValueError: Si une erreur survient lors de l'entrée de la lettre.
     """
-    lstMot = dictionnaire("Atelier 3/Exercice 3/noms-capitales.txt")
-    dictMot = buildDict(lstMot)
+    dictMot = buildDict(LST_MOTS)
     lenMot = demandeDifficulteGetWordLen()
     motATrouver = selectWord(dictMot, lenMot)
+    
     print("Chut, le mot est : ", motATrouver)
+    
     nbErreur = 0
-    lstIndTrouve = []
+    lstIndexTrouve = []
 
-    while nbErreur < 5 and len(lstIndTrouve) != len(motATrouver):
+    while nbErreur < 5 and len(lstIndexTrouve) != len(motATrouver):
         print("\nMot à trouver:")
-        print(outputStr(motATrouver, lstIndTrouve))
+        print(outputStr(motATrouver, lstIndexTrouve))
+        
+        try:
+            chr = input("\nEntrez une lettre (minuscule) -> ")
+            chr = chr.lower() # tous les mots sont en minuscule, on converti alors automatiquement le caractère envoyé en minuscule pour éviter certaines erreurs
+        except:
+            raise ValueError("Un problème est survenu lors de l'entrée de la lettre: Manipulation impossible.")
 
         try:
-            chr = str(input("\nEntrez une lettre (minuscule) -> "))
-            chr = chr.lower()
-        except:
-            raise ValueError("\nUn problème est survenu lors de l'entrée de la lettre")
-
-        lstIndRes = placesLettre(chr, motATrouver)
-        if lstIndRes == []:
-            print("\nErreur! La lettre " + chr + " n'est pas dans le mot cherché ! \n")
+            lstIndexRes = placesLettre(chr, motATrouver) # nous renvoie une liste d'index ou le caractère se trouve dans le mot à trouver
+        except ValueError as e:
+            raise ValueError (str(e) + ": Impossible de placer la lettre.")
+        
+        if lstIndexRes == []: # càd si la lettre n'a pas été touvée dans le mot
+            print("\nErreur ! La lettre " + chr + " n'est pas dans le mot cherché ! \n")
             nbErreur += 1
-            for i in range(nbErreur):
-                print(lstPendu[i])
+            
+            if nbErreur > 0:
+                print(f"Pendu : {nbErreur}/5 olala")
+            for ligne in range(nbErreur): # A chaque nombre d'erreur, on ajoute une ligne de LST_PENDU (une ligne = un élément)
+                print(LST_PENDU[ligne])
         else:
-            lstIndTrouve += lstIndRes
+            lstIndexTrouve += lstIndexRes # ex: [1, 2] + [3, 4] = [1, 2, 3, 4]
 
-    if nbErreur == 5:
+    if nbErreur == 5: # il est necessaire de verifier nbErreur car sortir de la boucle while peut signifier avoir gagné ou avoir perdu
         print("\nPerdu !")
     else:
         print("\nBravo ! Le mot était bien ", motATrouver, "!")
 
-runGame()
+
+def main():
+    """
+    Point d'entrée du programme
+    """
+    assert placesLettre("m", "maman") == [0, 2]
+    
+    assert outputStr("bonjour", [0, 1, 4]) == "bo--o--"
+    
+    LST_MOTS = dictionnaire("Atelier 3/Exercice 3/noms-capitales.txt")
+    LST_PENDU = ["|---] ", "| O ", "| T ", "|/ \ ", "|______"]
+    
+    runGame(LST_MOTS, LST_PENDU)
+    
+if __name__ == "__main__":
+    main()

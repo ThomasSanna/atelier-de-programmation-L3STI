@@ -136,6 +136,9 @@ def verif_parenthese(expression: str) -> bool:
     return not pile
 
 def main():
+    """
+    Point d'entrée du programme
+    """
     assert ouvrante("(") == True
     assert ouvrante("{") == True
     assert ouvrante("[") == True
