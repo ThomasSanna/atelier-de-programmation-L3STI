@@ -1,7 +1,6 @@
 import matplotlib.pyplot as plt
 
-LST_FREQ = [6, 5, 6, 8, 4, 2, 1, 5]
-LST_FREQ_2 = [2, 3, 1, 8, 9, 4, 2, 3, 2, 8, 9, 7, 4, 2, 1, 5, 6, 8, 9, 0, 8, 7, 6, 6, 3, 4, 4, 4, 2, 5, 10, 12, 13, 13, 11, 12]
+
 
 # Fonction d'exercice 1
 def valMax(lst: list) -> int:
@@ -24,10 +23,6 @@ def valMax(lst: list) -> int:
         if maxi < elt:
             maxi = elt
     return maxi
-
-assert valMax([1, 2, 3, 4, 5]) == 5
-assert valMax([5, 4, 3, 2, 1]) == 5
-assert valMax([0, 0, 0, 0]) == 0
 
 
 def histo(lstFreq: list) -> list:
@@ -53,10 +48,6 @@ def histo(lstFreq: list) -> list:
         lstHisto[elt] += 1
     return lstHisto
 
-assert histo([1, 2, 2, 3]) == [0, 1, 2, 1]
-assert histo([0, 0, 0, 0]) == [4]
-assert histo([1, 1, 1, 1]) == [0, 4]
-
 
 def estInjective(lstHisto: list) -> bool:
     """
@@ -73,10 +64,6 @@ def estInjective(lstHisto: list) -> bool:
         if elt > 1:
             return False
     return True
-
-assert estInjective(histo([1, 2, 3, 4])) == True
-assert estInjective(histo([1, 2, 2, 3])) == False
-assert estInjective(histo([0, 1, 2, 3])) == True
 
 
 def estSurjective(lstHisto: list) -> bool:
@@ -95,9 +82,6 @@ def estSurjective(lstHisto: list) -> bool:
             return False
     return True
 
-assert estSurjective(histo([0, 1, 2, 3])) == True
-assert estSurjective(histo([1, 2, 3, 4])) == False
-assert estSurjective(histo([0, 0, 0, 0])) == True
 
 def estBijective(lstHisto: list) -> bool:
     """
@@ -111,10 +95,6 @@ def estBijective(lstHisto: list) -> bool:
     """
     
     return estInjective(lstHisto) and estSurjective(lstHisto)
-
-assert estBijective(histo([0, 1, 2, 3])) == True
-assert estBijective(histo([1, 2, 3, 4])) == False
-assert estBijective(histo([0, 0, 0, 0])) == False
 
 
 def afficheHisto(lstHisto: list) -> None:
@@ -152,9 +132,6 @@ def afficheHisto(lstHisto: list) -> None:
 
     print(strResultat)
 
-afficheHisto(histo(LST_FREQ))
-afficheHisto(histo(LST_FREQ_2))
-
 
 def afficheHistoMatPlot(lstHisto: list) -> None:
     """
@@ -175,5 +152,35 @@ def afficheHistoMatPlot(lstHisto: list) -> None:
     plt.title('Histogramme')
     plt.show()
 
-afficheHistoMatPlot(histo(LST_FREQ))
-afficheHistoMatPlot(histo(LST_FREQ_2))
+def main():
+    LST_FREQ = [6, 5, 6, 8, 4, 2, 1, 5]
+    LST_FREQ_2 = [2, 3, 1, 8, 9, 4, 2, 3, 2, 8, 9, 7, 4, 2, 1, 5, 6, 8, 9, 0, 8, 7, 6, 6, 3, 4, 4, 4, 2, 5, 10, 12, 13, 13, 11, 12]
+    
+    assert valMax([1, 2, 3, 4, 5]) == 5
+    assert valMax([5, 4, 3, 2, 1]) == 5
+    assert valMax([0, 0, 0, 0]) == 0
+    
+    assert histo([1, 2, 2, 3]) == [0, 1, 2, 1]
+    assert histo([0, 0, 0, 0]) == [4]
+    assert histo([1, 1, 1, 1]) == [0, 4]
+    
+    assert estInjective(histo([1, 2, 3, 4])) == True
+    assert estInjective(histo([1, 2, 2, 3])) == False
+    assert estInjective(histo([0, 1, 2, 3])) == True
+    
+    assert estSurjective(histo([0, 1, 2, 3])) == True
+    assert estSurjective(histo([1, 2, 3, 4])) == False
+    assert estSurjective(histo([0, 0, 0, 0])) == True
+    
+    assert estBijective(histo([0, 1, 2, 3])) == True
+    assert estBijective(histo([1, 2, 3, 4])) == False
+    assert estBijective(histo([0, 0, 0, 0])) == False
+    
+    afficheHisto(histo(LST_FREQ))
+    afficheHisto(histo(LST_FREQ_2))
+
+    afficheHistoMatPlot(histo(LST_FREQ))
+    afficheHistoMatPlot(histo(LST_FREQ_2))
+
+if __name__ == "__main__":
+    main()
