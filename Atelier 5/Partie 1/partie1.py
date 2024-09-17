@@ -2,7 +2,7 @@ from random import randint
 import copy
 
 # exercice 1
-def genListRandom(intNbr:int, intBInf=0, intBSup=10)->list:
+def genListRandom(intNbr=10, intBInf=0, intBSup=10)->list:
   """
   Génère une liste de nombres aléatoires
 
