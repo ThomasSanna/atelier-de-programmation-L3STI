@@ -36,10 +36,10 @@ def mixList(listToMix:list[int])->list[int]:
   listMixed = []
   
   while len(listIndexRandom) != len(listToMix): # ajoute les index de manière unique et aléatoires
-    nbRandom = randint(0, len(listToMix)-1)
-    if nbRandom not in listIndexRandom:
-      listIndexRandom.append(nbRandom)
-      listMixed.append(listToMix[nbRandom])
+    nbIndexRandom = randint(0, len(listToMix)-1)
+    if nbIndexRandom not in listIndexRandom:
+      listIndexRandom.append(nbIndexRandom)
+      listMixed.append(listToMix[nbIndexRandom])
   print(listToMix, listIndexRandom, listMixed)
   return listMixed
 
@@ -57,12 +57,27 @@ def chooseElementList(listInWhichToChoose: list[any])-> any:
   Raises:
       ValueError: Si la liste est vide
   """
+  if not listInWhichToChoose:
+    raise ValueError('La liste est vide')
   return listInWhichToChoose[randint(0, len(listInWhichToChoose)-1)]
 
 # exercice 4
 def extractElementsList(listInWhichToChoose: list[any], intNbrOfElementToExtract: int)-> list[any]:
+  """
+  Extrait un nombre d'élément aléatoire d'une liste
+
+  Args:
+      listInWhichToChoose (list[any]): Liste dans laquelle choisir
+      intNbrOfElementToExtract (int): Nombre d'élément à extraire
+
+  Raises:
+      ValueError: Si le nombre d'élément à extraire est plus grand que la liste donnée
+
+  Returns:
+      list[any]: Liste d'élément extrait
+  """
   if len(listInWhichToChoose) < intNbrOfElementToExtract:
-    raise ValueError ('Le nombre d\'élément à éxtraire est plus grand que la liste donnée. Pas bien')
+    raise ValueError ('Le nombre d\'élément à extraire est plus grand que la liste donnée. Pas bien')
   listTemp = copy.deepcopy(listInWhichToChoose)
   listResultat = []
   for i in range(intNbrOfElementToExtract):
