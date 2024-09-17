@@ -18,11 +18,11 @@ def mixList(listToMix:list[int])->list[int]:
   listIndexRandom = [] # une liste d'index uniques dans des places aléatoires 
   listMixed = []
   
-  while len(listIndexRandom) < len(listToMix): # ajoute les index de manière unique et aléatoires
-    nbRandom = random.randint(0, len(listToMix)-1)
-    if nbRandom not in listIndexRandom:
-      listIndexRandom.append(nbRandom)
-      listMixed.append(listToMix[nbRandom])
+  while len(listIndexRandom) != len(listToMix): # ajoute les index de manière unique et aléatoires
+    nbIndexRandom = random.randint(0, len(listToMix)-1)
+    if nbIndexRandom not in listIndexRandom:
+      listIndexRandom.append(nbIndexRandom)
+      listMixed.append(listToMix[nbIndexRandom])
   return listMixed
 
 # Question 2

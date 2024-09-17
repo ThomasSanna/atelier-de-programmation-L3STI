@@ -40,7 +40,6 @@ def mixList(listToMix:list[int])->list[int]:
     if nbIndexRandom not in listIndexRandom:
       listIndexRandom.append(nbIndexRandom)
       listMixed.append(listToMix[nbIndexRandom])
-  print(listToMix, listIndexRandom, listMixed)
   return listMixed
 
 # exercice 3
