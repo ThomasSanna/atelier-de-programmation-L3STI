@@ -14,6 +14,8 @@ def genListRandom(intNbr=10, intBInf=0, intBSup=10)->list[int]:
   Returns:
       list: Liste de nombres aléatoires
   """
+  if intBInf > intBSup:
+    raise ValueError('L\'intervalle de nombre est mal défini')
   return [randint(intBInf, intBSup) for i in range(intNbr)]
 
 # exercice 2
