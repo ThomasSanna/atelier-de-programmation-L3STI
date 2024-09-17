@@ -116,7 +116,8 @@ def concatList(lst: list) -> list:
         return []
     if isinstance(lst[0], (list, tuple)):
         return concatList(lst[0]) + concatList(lst[1:])
-    return [lst[0]] + concatList(lst[1:])
+    else:
+        return [lst[0]] + concatList(lst[1:])
 
 # Question 7:
 
