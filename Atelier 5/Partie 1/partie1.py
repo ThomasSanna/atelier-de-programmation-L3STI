@@ -13,6 +13,9 @@ def genListRandom(intNbr=10, intBInf=0, intBSup=10)->list[int]:
 
   Returns:
       list: Liste de nombres aléatoires
+      
+  Raises:
+      ValueError: Si l'intervalle de nombre est mal défini
   """
   if intBInf > intBSup:
     raise ValueError('L\'intervalle de nombre est mal défini')
@@ -50,6 +53,9 @@ def chooseElementList(listInWhichToChoose: list[any])-> any:
 
   Returns:
       Any:  élément aléatoire de la liste listInWhichToChoose
+      
+  Raises:
+      ValueError: Si la liste est vide
   """
   return listInWhichToChoose[randint(0, len(listInWhichToChoose)-1)]
 
