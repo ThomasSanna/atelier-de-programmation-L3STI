@@ -119,6 +119,24 @@ def concatList(lst: list) -> list:
     else:
         return [lst[0]] + concatList(lst[1:])
 
+def concatListStr(lst: list) -> list[str]:
+    """
+    Concatène les sous-listes d'une liste de manière récursive.
+    
+    Args:
+        lst (list): La liste contenant des sous-listes.
+    
+    Returns:
+        list: Une liste aplatie.
+    """
+    if not lst:
+        return []
+    if isinstance(lst[0], (list, tuple)):
+        return concatList(lst[0]) + concatList(lst[1:])
+    else:
+        return lst[0] + concatList(lst[1:])
+
+
 # Question 7:
 
 def incluse(lst1: list, lst2: list) -> bool:
@@ -134,9 +152,7 @@ def incluse(lst1: list, lst2: list) -> bool:
     """
     if not lst1:
         return True
-    if len(lst2) < len(lst1):
-        return False
-    if lst1[0] not in lst2:
+    if len(lst2) < len(lst1) or lst1[0] not in lst2:
         return False
     indEltLst2 = lst2.index(lst1[0]) # on fait ça car on sait que les éléments doivent être présent dans l'ordre
     return incluse(lst1[1:], lst2[(indEltLst2 + 1):]) # donc lst2 est coupé après l'élément traité (lst1[0])
