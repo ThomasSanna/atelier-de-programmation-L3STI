@@ -3,6 +3,7 @@ import random
 import matplotlib.pyplot as plt
 import copy
 
+# Exercice 5
 # Question 1
 def mixList(listToMix:list[int])->list[int]:
   """

@@ -2,7 +2,7 @@ from random import randint
 import copy
 
 # exercice 1
-def genListRandom(intNbr=10, intBInf=0, intBSup=10)->list:
+def genListRandom(intNbr=10, intBInf=0, intBSup=10)->list[int]:
   """
   Génère une liste de nombres aléatoires
 
@@ -35,6 +35,7 @@ def mixList(listToMix:list[int])->list[int]:
     if nbRandom not in listIndexRandom:
       listIndexRandom.append(nbRandom)
       listMixed.append(listToMix[nbRandom])
+  print(listToMix, listIndexRandom, listMixed)
   return listMixed
 
 # exercice 3
