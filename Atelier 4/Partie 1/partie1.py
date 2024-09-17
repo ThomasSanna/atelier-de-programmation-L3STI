@@ -75,8 +75,12 @@ def minimum(lst: list) -> int:
         raise ValueError('La liste est vide, aucun minimum ne peut être défini.')
     if len(lst) == 1:
         return lst[0]
-    min_rest = minimum(lst[1:])
-    return lst[0] if lst[0] < min_rest else min_rest
+    
+    minRest = minimum(lst[1:])
+    if lst[0] < minRest:
+        return lst[0]
+    else:
+        return minRest
 
 # Question 5:
 
@@ -133,8 +137,8 @@ def incluse(lst1: list, lst2: list) -> bool:
         return False
     if lst1[0] not in lst2:
         return False
-    indEltLst2 = lst2.index(lst1[0])
-    return incluse(lst1[1:], lst2[indEltLst2 + 1:])
+    indEltLst2 = lst2.index(lst1[0]) # on fait ça car on sait que les éléments doivent être présent dans l'ordre
+    return incluse(lst1[1:], lst2[(indEltLst2 + 1):]) # donc lst2 est coupé après l'élément traité (lst1[0])
 
 def main():
     """
