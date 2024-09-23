@@ -4,6 +4,10 @@ import classes.Adresse;
 import classes.Personne;
 
 public class TestQuestion1 {
+  
+  /** 
+   * @param args
+   */
   public static void main(String[] args) {
     // Création de deux objets Adresse
     Adresse adresse1 = new Adresse("123 Rue Principale", "Paris", 75000);

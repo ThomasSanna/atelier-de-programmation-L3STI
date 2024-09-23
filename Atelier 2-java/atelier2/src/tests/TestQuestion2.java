@@ -7,6 +7,10 @@ import classes.Personne;
 import classes.Secretaire;
 
 public class TestQuestion2 {
+  
+  /** 
+   * @param args
+   */
   public static void main(String[] args) {
     // Création de deux objets Adresse
     Adresse adresse1 = new Adresse("123 Rue Principale", "Paris", 75000);
@@ -53,9 +57,8 @@ public class TestQuestion2 {
     // Test de la limite de managers
     Manager manager3 = new Manager(employe4);
     secretaire1.ajouterManager(manager3);
-    secretaire1.ajouterManager(manager1); // Réajout de manager1
-    secretaire1.ajouterManager(manager2); // Réajout de manager2
-    secretaire1.ajouterManager(manager3); // Réajout de manager3
-    System.out.println("Salaire après tentative d'ajout de plus de 5 managers : " + secretaire1.getSalaire());
+    secretaire1.ajouterManager(manager1);
+    secretaire1.ajouterManager(manager2); // Réajout de manager2 : erreur car déjà ajouté
+    secretaire1.ajouterManager(manager3); // Réajout de manager3 : erreur car déjà ajouté
   }
 }
