@@ -2,16 +2,18 @@ package classes;
 import java.util.ArrayList;
 
 public class Secretaire extends Employe {
+  private double salaireDeBase;
   private ArrayList<Manager> managers = new ArrayList<>();
   private static final double BONUS_SALAIRE_PAR_MANAGER = 0.1;
 
   public Secretaire(Employe employe) {
     super(employe.getPersonne(), employe.getSalaire(), employe.getDateEmbauche());
+    this.salaireDeBase = employe.getSalaire();
   }
 
   private void recalculerSalaireBonus() {
-    double bonusTotal = managers.size() * BONUS_SALAIRE_PAR_MANAGER;
-    double nouveauSalaire = getSalaireDeBase() + bonusTotal;
+    double pourcentage = managers.size() * BONUS_SALAIRE_PAR_MANAGER;
+    double nouveauSalaire = getSalaireDeBase() * (1 + pourcentage/100);
     setSalaire(nouveauSalaire);
   }
 
@@ -34,6 +36,17 @@ public class Secretaire extends Employe {
       System.out.println("Le manager n'est pas associé à cette secrétaire.");
     }
   }
+
+  public void augmenterLeSalaire(double pourcentage) {
+    double montantAjout = 1 + (pourcentage / 100);
+    this.salaireDeBase *= montantAjout;
+    recalculerSalaireBonus();
+  }
+
+  private double getSalaireDeBase() {
+    return this.salaireDeBase;
+  }
+
 
   public String toString() {
     return super.toString() + " Il est secrétaire.";

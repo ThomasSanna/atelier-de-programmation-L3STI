@@ -3,7 +3,6 @@ import java.time.LocalDate;
 import java.time.Period;
 
 public class Employe extends Personne {
-  private double salaireDeBase;
   private double salaire;
   private String dateEmbauche;
 
@@ -13,7 +12,6 @@ public class Employe extends Personne {
     // }
     super(personne.getNom(), personne.getPrenom(), personne.getAge(), personne.getAdresse());
     this.salaire = salaire;
-    this.salaireDeBase = salaire;
     this.dateEmbauche = dateEmbauche;
   }
 
@@ -40,9 +38,6 @@ public class Employe extends Personne {
 
   public double getSalaire() {
     return this.salaire;
-  }
-  public double getSalaireDeBase() {
-    return this.salaireDeBase;
   }
   public String getDateEmbauche() {
     return this.dateEmbauche;
