@@ -235,6 +235,7 @@ def triComptage(lst: list[int], exposant: int) -> list[int]:
 # TESTS
 def testsFonctions():
   lst = [random.randint(0, 100) for i in range(10)]
+  print(lst)
   
   start = time.perf_counter()
   sortList(lst)
